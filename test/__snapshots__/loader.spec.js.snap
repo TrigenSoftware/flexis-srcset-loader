@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`srcset-loader should emit files 1`] = `
+"
+export default __webpack_public_path__ + \\"1d181bac90a1e1b1d3f2f6d57d699408.jpg\\";
+
+export var srcset = [{
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp3000\\",
+	width: 3000,
+	height: 1500,
+	src: __webpack_public_path__ + \\"1adaa621ae94765121cf0591cc2967d4.webp\\"
+}, {
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp3200\\",
+	width: 3000,
+	height: 1500,
+	src: __webpack_public_path__ + \\"1adaa621ae94765121cf0591cc2967d4.webp\\"
+}, {
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp1920\\",
+	width: 1920,
+	height: 960,
+	src: __webpack_public_path__ + \\"5396a14ffda650172b7101bfbc72b2ad.webp\\"
+}, {
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp1280\\",
+	width: 1280,
+	height: 640,
+	src: __webpack_public_path__ + \\"59878802429073e3446b31cde9832c47.webp\\"
+}, {
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp720\\",
+	width: 720,
+	height: 360,
+	src: __webpack_public_path__ + \\"acf984eae079282968ee77f57489f9f5.webp\\"
+}, {
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp560\\",
+	width: 560,
+	height: 280,
+	src: __webpack_public_path__ + \\"102a72a2b3ef1bc24310ef8cba0afb87.webp\\"
+}, {
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	name: \\"webp320\\",
+	width: 320,
+	height: 160,
+	src: __webpack_public_path__ + \\"35323af81fce1c8536729402ff70eb2f.webp\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg3000\\",
+	width: 3000,
+	height: 1500,
+	src: __webpack_public_path__ + \\"1d181bac90a1e1b1d3f2f6d57d699408.jpg\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg3200\\",
+	width: 3000,
+	height: 1500,
+	src: __webpack_public_path__ + \\"1d181bac90a1e1b1d3f2f6d57d699408.jpg\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg1920\\",
+	width: 1920,
+	height: 960,
+	src: __webpack_public_path__ + \\"f36d28ec72da7a1cf9682845216e4149.jpg\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg1280\\",
+	width: 1280,
+	height: 640,
+	src: __webpack_public_path__ + \\"852e21173e35dcf2ed492bd7f4769992.jpg\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg720\\",
+	width: 720,
+	height: 360,
+	src: __webpack_public_path__ + \\"e75c1aac9eb1aea3b79485a49178de03.jpg\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg560\\",
+	width: 560,
+	height: 280,
+	src: __webpack_public_path__ + \\"720d1e2f37069ef45ff6d082bcf3daa9.jpg\\"
+}, {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg320\\",
+	width: 320,
+	height: 160,
+	src: __webpack_public_path__ + \\"9fc54c08e803c7356f97ea92e1b27bf3.jpg\\"
+}];
+
+export var names = {
+	\\"webp3000\\": __webpack_public_path__ + \\"1adaa621ae94765121cf0591cc2967d4.webp\\",
+	\\"webp3200\\": __webpack_public_path__ + \\"1adaa621ae94765121cf0591cc2967d4.webp\\",
+	\\"webp1920\\": __webpack_public_path__ + \\"5396a14ffda650172b7101bfbc72b2ad.webp\\",
+	\\"webp1280\\": __webpack_public_path__ + \\"59878802429073e3446b31cde9832c47.webp\\",
+	\\"webp720\\": __webpack_public_path__ + \\"acf984eae079282968ee77f57489f9f5.webp\\",
+	\\"webp560\\": __webpack_public_path__ + \\"102a72a2b3ef1bc24310ef8cba0afb87.webp\\",
+	\\"webp320\\": __webpack_public_path__ + \\"35323af81fce1c8536729402ff70eb2f.webp\\",
+	\\"jpg3000\\": __webpack_public_path__ + \\"1d181bac90a1e1b1d3f2f6d57d699408.jpg\\",
+	\\"jpg3200\\": __webpack_public_path__ + \\"1d181bac90a1e1b1d3f2f6d57d699408.jpg\\",
+	\\"jpg1920\\": __webpack_public_path__ + \\"f36d28ec72da7a1cf9682845216e4149.jpg\\",
+	\\"jpg1280\\": __webpack_public_path__ + \\"852e21173e35dcf2ed492bd7f4769992.jpg\\",
+	\\"jpg720\\": __webpack_public_path__ + \\"e75c1aac9eb1aea3b79485a49178de03.jpg\\",
+	\\"jpg560\\": __webpack_public_path__ + \\"720d1e2f37069ef45ff6d082bcf3daa9.jpg\\",
+	\\"jpg320\\": __webpack_public_path__ + \\"9fc54c08e803c7356f97ea92e1b27bf3.jpg\\"
+};
+"
+`;
