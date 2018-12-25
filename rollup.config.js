@@ -13,7 +13,7 @@ const plugins = [
 		runtimeHelpers: true
 	})
 ];
-const dependencies = [].concat(
+const dependencies = ['path'].concat(
 	Object.keys(pkg.dependencies)
 );
 
@@ -30,6 +30,7 @@ export default {
 	output: {
 		file:      pkg.main,
 		format:    'cjs',
+		exports:   'named',
 		sourcemap: 'inline'
 	}
 };
