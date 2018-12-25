@@ -21,7 +21,10 @@ describe('srcset-loader', () => {
 		} = stats.modules[0].modules[1];
 		const artifacts = fs.readdirSync(pathToArtifacts);
 
-		expect(source).toMatchSnapshot();
+		expect(source.replace(
+			/(__webpack_public_path__ \+ ").*(\.\w+")/gi,
+			'$1asset$2'
+		)).toMatchSnapshot();
 		expect(artifacts.length).toBe(13);
 	});
 });

@@ -42,7 +42,7 @@ import imgSrc {
 } from './file.jpg'
 ```
 
-Typings for "srcset"-modules:
+Typings for 'srcset'-modules:
 
 ```ts
 declare module '*.jpg' {
@@ -145,9 +145,9 @@ Default: `[1]`
 
 #### `rule.format: string|string[]`
 
-Target formats to generate, supports: `"svg"`, `"gif"`, `"jpeg"`, `"png"` and `"webp"`.
+Target formats to generate, supports: `'svg'`, `'gif'`, `'jpeg'`, `'png'` and `'webp'`.
 
-For converting are available only `"jpeg"`, `"png"` and `"webp"`.
+For converting are available only `'jpeg'`, `'png'` and `'webp'`.
 
 Default: ```[`format of source image`]```
 
