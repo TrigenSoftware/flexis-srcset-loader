@@ -42,7 +42,7 @@ import imgSrc {
 } from './file.jpg'
 ```
 
-Typings for 'srcset'-modules:
+Typings for "srcset"-modules:
 
 ```ts
 declare module '*.jpg' {
