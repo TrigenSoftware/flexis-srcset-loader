@@ -15,8 +15,8 @@
 [deps]: https://img.shields.io/david/TrigenSoftware/flexis-srcset-loader.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader
 
-[build]: http://img.shields.io/travis/TrigenSoftware/flexis-srcset-loader.svg
-[build-url]: https://travis-ci.org/TrigenSoftware/flexis-srcset-loader
+[build]: http://img.shields.io/travis/com/TrigenSoftware/flexis-srcset-loader.svg
+[build-url]: https://travis-ci.com/TrigenSoftware/flexis-srcset-loader
 
 [greenkeeper]: https://badges.greenkeeper.io/TrigenSoftware/flexis-srcset-loader.svg
 [greenkeeper-url]: https://greenkeeper.io/
