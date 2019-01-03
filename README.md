@@ -133,7 +133,7 @@ There is support of 3 types of matchers:
 
 1. Glob pattern of file path/name.
 2. Media query to match image by size.
-3. Function with `path`, `size` and `file` arguments, where `path` is String, `size` is object `{ width, height }` and `file` is instance of `Vinyl`.
+3. Function with `path`, `size` and `file` arguments, where `path` is `string`, `size` is `{ width: nunber, height: number }` and `file` is instance of `Vinyl`.
 
 #### `rule.width: number|number[]`
 
