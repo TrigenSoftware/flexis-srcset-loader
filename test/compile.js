@@ -36,7 +36,7 @@ export default function compile(fixtureEntry, options = {}, writeToFs = false) {
 
 		webpackCompiler.run((err, stats) => {
 
-			const hasErrors = stats.hasErrors();
+			const hasErrors = stats && stats.hasErrors();
 
 			if (err || hasErrors) {
 				reject(hasErrors
