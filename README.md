@@ -127,7 +127,7 @@ Same as [`file-loader` options](https://github.com/webpack-contrib/file-loader#o
 
 Array of rules to generate variants of image.
 
-#### `rule.match: string|Function|(String|Function)[]`
+#### `rule.match: string|Function|(string|Function)[]`
 
 There is support of 3 types of matchers:
 
