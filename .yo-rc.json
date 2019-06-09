@@ -1,0 +1,20 @@
+{
+  "generator-trigen-lib": {
+    "editPackage": true,
+    "pkg": {
+      "name": "@flexis/srcset-loader",
+      "version": "1.0.0",
+      "description": "Highly customizable loader to generating responsive images.",
+      "repository": "https://github.com/TrigenSoftware/flexis-srcset-loader",
+      "author": "dangreen"
+    },
+    "type": "node",
+    "lang": "babel",
+    "rollup": true,
+    "jest": true,
+    "coverage": false,
+    "publishAsRoot": false,
+    "cleanPublish": true,
+    "checkSize": true
+  }
+}

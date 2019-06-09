@@ -2,17 +2,21 @@
 
 [![NPM version][npm]][npm-url]
 [![Node version][node]][node-url]
-[![Dependency status][deps]][deps-url]
+[![Peer dependencies status][peer-deps]][peer-deps-url]
+[![Dependencies status][deps]][deps-url]
 [![Build status][build]][build-url]
 [![Greenkeeper badge][greenkeeper]][greenkeeper-url]
 
-[npm]: https://img.shields.io/npm/v/%40flexis/srcset-loader.svg
-[npm-url]: https://www.npmjs.com/package/@flexis/srcset-loader
+[npm]: https://img.shields.io/npm/v/@flexis/srcset-loader.svg
+[npm-url]: https://npmjs.com/package/@flexis/srcset-loader
 
-[node]: https://img.shields.io/node/v/%40flexis/srcset-loader.svg
+[node]: https://img.shields.io/node/v/@flexis/srcset-loader.svg
 [node-url]: https://nodejs.org
 
-[deps]: https://img.shields.io/david/TrigenSoftware/flexis-srcset-loader.svg
+[peer-deps]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader/peer-status.svg
+[peer-deps-url]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader?type=peer
+
+[deps]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader
 
 [build]: http://img.shields.io/travis/com/TrigenSoftware/flexis-srcset-loader.svg
