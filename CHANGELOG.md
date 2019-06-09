@@ -24,6 +24,10 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [1.1.0] - 2019-06-09
+### Added
+- `trigen-scripts` dev tool.
+
 ## [1.0.0] - 2019-01-04
 ### Added
 - 🦄
