@@ -51,6 +51,22 @@ import src, {
 } from './image.jpg'
 ```
 
+CSS:
+
+```css
+.image {
+    background-image: url(./image.jpg);
+}
+
+.webp .image {
+    background-image: url(./image.jpg?format=webp);
+}
+
+.image.sm {
+    background-image: url(./image.jpg?width=320);
+}
+```
+
 Description:
 
 ```ts
@@ -106,22 +122,6 @@ export {
     srcset,
     names
 };
-```
-
-CSS:
-
-```css
-.image {
-    background-image: url(./image.jpg);
-}
-
-.webp .image {
-    background-image: url(./image.jpg?format=webp);
-}
-
-.image.sm {
-    background-image: url(./image.jpg?width=320);
-}
 ```
 
 ## Configuration
