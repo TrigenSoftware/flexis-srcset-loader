@@ -55,33 +55,33 @@ Description:
 
 ```ts
 interface ISrc {
-	/**
-	 * Image file format.
-	 **/
-	format: 'webp' | 'jpg' | 'png' | 'gif' | 'svg';
-	/**
-	 * Mime type of an image.
-	 * Example: 'image/svg+xml', 'image/jpeg'...
-	 **/
-	type: string;
-	/**
-	 * Postfix, computed by loader.
-	 * By default: `${format}${width}`
-	 * Example: 'jpg320', 'webp1280'...
-	 **/
-	name: string;
-	/**
-	 * Image width.
-	 **/
-	width: number;
-	/**
-	 * Image height.
-	 **/
-	height: number;
-	/**
-	 * Image url.
-	 **/
-	src: string;
+    /**
+     * Image file format.
+     **/
+    format: 'webp' | 'jpg' | 'png' | 'gif' | 'svg';
+    /**
+     * Mime type of an image.
+     * Example: 'image/svg+xml', 'image/jpeg'...
+     **/
+    type: string;
+    /**
+     * Postfix, computed by loader.
+     * By default: `${format}${width}`
+     * Example: 'jpg320', 'webp1280'...
+     **/
+    name: string;
+    /**
+     * Image width.
+     **/
+    width: number;
+    /**
+     * Image height.
+     **/
+    height: number;
+    /**
+     * Image url.
+     **/
+    src: string;
 }
 
 /**
