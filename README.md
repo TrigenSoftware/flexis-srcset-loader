@@ -144,7 +144,7 @@ interface IConfig extends ICommonConfig {
     rules?: IRule[];
     /**
      * Default exported image description.
-     * Also you can pass it in query parameters.
+     * Also you can pass it through query parameters.
      * Example: `background-image: url(./image.jpg?width=320&format=webp);`
      */
     exports?: {
