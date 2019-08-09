@@ -1,18 +1,17 @@
 interface ISrc {
 	/**
 	 * Image file format.
-	 * e.g. 'jpg', 'svg', 'png'...
 	 **/
-	format: string;
+	format: 'webp' | 'jpg' | 'png' | 'gif' | 'svg';
 	/**
 	 * Mime type of an image.
-	 * e.g. 'image/svg+xml', 'image/jpeg'...
+	 * Example: 'image/svg+xml', 'image/jpeg'...
 	 **/
 	type: string;
 	/**
-	 * Postfix, computed by `srcset`.
+	 * Postfix, computed by loader.
 	 * By default: `${format}${width}`
-	 * e.g: 'jpg320', 'webp1280'...
+	 * Example: 'jpg320', 'webp1280'...
 	 **/
 	name: string;
 	/**
@@ -46,6 +45,6 @@ export type Srcset = ISrc[];
 
 /**
  * Name-to-url map.
- * e.g: `{ jpg320: 'image.jpg', webp1280: 'image.webp' }`
+ * Example: `{ jpg320: 'image.jpg', webp1280: 'image.webp' }`
  **/
 export type Names = Record<string, string>;
