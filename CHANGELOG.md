@@ -24,6 +24,14 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [1.2.0] - 2019-08-09
+### Changed
+- New docs.
+
+### Added
+- `source` export;
+- Query parameters.
+
 ## [1.1.0] - 2019-06-09
 ### Added
 - `trigen-scripts` dev tool.
