@@ -1,9 +1,11 @@
-import imageSrc, {
-	srcset as imageSrcset,
-	names as imageNames
-} from './image.jpg';
+import src, {
+	source,
+	srcset,
+	names
+} from './Felix.jpg';
+import './image.css';
 
-function img(src, srcset) {
+function img(source, srcset) {
 
 	const srcsetString = !srcset ? '' : srcset
 		.map(({
@@ -15,10 +17,10 @@ function img(src, srcset) {
 		.join(',\n');
 	const srcsetAttr = !srcsetString ? '' : ` srcset='${srcsetString}'`;
 
-	return `<img${srcsetAttr} src='${src}'>`;
+	return `<img${srcsetAttr} src='${source.src}' style="max-width: ${source.width}px">`;
 }
 
-function picture(src, srcset) {
+function picture(source, srcset) {
 
 	const types = {};
 
@@ -41,7 +43,7 @@ function picture(src, srcset) {
 	${Object.entries(types).map(([type, srcset]) =>
 		`<source type='${type}' srcset='${srcset.join(',\n')}'>`
 	).join('\n')}
-	${img(src, srcset)}
+	${img(source, srcset)}
 </picture>`;
 }
 
@@ -70,20 +72,25 @@ img {
 		<li>
 			<a href="?picture">Picture</a>
 		</li>
+		<li>
+			<a href="?css">CSS</a>
+		</li>
 	</ul>
 </nav>
 ${location.search !== '?img' ? '' : `<h2>Source image:</h2>
 <figure>
-	${img(imageSrc)}
+	${img(source)}
 </figure>`}
 ${location.search !== '?srcset' && location.search !== '' ? '' : `<h2>Source set:</h2>
 <figure>
-	${img(imageSrc, imageSrcset)}
+	${img(source, srcset)}
 </figure>`}
 ${location.search !== '?picture' ? '' : `<h2>Picture:</h2>
 <figure>
-	${picture(imageSrc, imageSrcset)}
+	${picture(source, srcset)}
 </figure>`}
+${location.search !== '?css' ? '' : `<h2>CSS:</h2>
+<figure class="image"></figure>`}
 `;
 
-console.log(imageNames);
+console.log(src, source, srcset, names);

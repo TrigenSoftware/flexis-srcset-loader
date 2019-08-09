@@ -11,20 +11,21 @@ describe('srcset-loader', () => {
 
 		const stats = await compile('image.js', {
 			rules: [{
-				match:  '(min-width: 3000px)',
-				width:  [1, 3200, 1920, 1280, 720, 560, 320],
+				match:  '(max-width: 3000px)',
+				width:  [1, 1920, 1280, 720, 560, 320],
 				format: ['webp', 'jpg']
-			}]
+			}],
+			scalingUp: false
 		});
 		const {
 			source
-		} = stats.modules[0].modules[1];
+		} = stats.modules[6].modules[1];
 		const artifacts = fs.readdirSync(pathToArtifacts);
 
 		expect(source.replace(
 			/(__webpack_public_path__ \+ ").*(\.\w+")/gi,
 			'$1asset$2'
 		)).toMatchSnapshot();
-		expect(artifacts.length).toBe(13);
+		expect(artifacts.length).toBe(7);
 	});
 });

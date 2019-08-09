@@ -3,13 +3,16 @@ import SrcsetGenerator, {
 	attachMetadata,
 	matchImage
 } from '@flexis/srcset';
-import { getOptions } from 'loader-utils';
+import {
+	getOptions
+} from 'loader-utils';
 import {
 	getContext,
 	getUrl,
 	getOutputPath,
 	getPublicPath,
-	createModuleString
+	createModuleString,
+	parseRequestOptions
 } from './helpers';
 import mimeTypes from './mimeTypes';
 
@@ -21,13 +24,14 @@ export default async function loader(imageBuffer) {
 
 	const callback = this.async();
 	const inputOptions = getOptions(this) || {};
+	const requestOptions = parseRequestOptions(this.request);
 	const options = {
 		processing:       false,
 		optimization:     false,
 		skipOptimization: false,
 		scalingUp:        true,
 		postfix:          defaultPostfix,
-		rules:            [],
+		rules:            [{}],
 		...inputOptions
 	};
 	const {
@@ -42,6 +46,13 @@ export default async function loader(imageBuffer) {
 	const srcset = [];
 
 	await attachMetadata(imageSource);
+
+	const exports = {
+		format: imageSource.extname.replace('.', ''),
+		width:  imageSource.metadata.width,
+		...options.exports,
+		...requestOptions
+	};
 
 	try {
 
@@ -83,8 +94,8 @@ export default async function loader(imageBuffer) {
 		);
 
 		callback(null, createModuleString(
-			imageSource.extname.replace('.', ''),
-			imageSource.metadata.width,
+			exports.format,
+			exports.width,
 			srcset
 		));
 		return;

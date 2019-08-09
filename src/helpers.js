@@ -67,8 +67,11 @@ export function getPublicPath({
 
 export function createModuleString(defaultFormat, defaultWidth, srcset) {
 
-	let defaultExport = null;
+	let defaultExport = JSON.stringify('');
+	let defaultSrcExportIndex = -1;
+	let defaultSrcExport = null;
 	let withDefaultFormat = false;
+	let srcsetString = '';
 	const srcsetStrings = [];
 	const namesStrings = [];
 
@@ -79,32 +82,85 @@ export function createModuleString(defaultFormat, defaultWidth, srcset) {
 		width,
 		height,
 		src
-	}) => {
+	}, i) => {
 
-		if (!withDefaultFormat && width === defaultWidth) {
-			defaultExport = src;
-			withDefaultFormat = format === defaultFormat;
-		}
-
-		srcsetStrings.push(`
+		srcsetString = `{
 	format: ${JSON.stringify(format)},
 	type: ${JSON.stringify(type)},
 	name: ${JSON.stringify(name)},
 	width: ${width},
 	height: ${height},
 	src: ${src}
-`);
+}`;
 
 		namesStrings.push(`${JSON.stringify(name)}: ${src}`);
+
+		if (!withDefaultFormat && width === defaultWidth) {
+
+			if (defaultSrcExport) {
+				srcsetStrings[defaultSrcExportIndex] = defaultSrcExport;
+			}
+
+			defaultExport = src;
+			defaultSrcExport = srcsetString;
+			defaultSrcExportIndex = i;
+			withDefaultFormat = format === defaultFormat;
+
+			srcsetStrings.push('source');
+			return;
+		}
+
+		srcsetStrings.push(srcsetString);
 	});
 
 	return `
 export default ${defaultExport};
 
-export var srcset = [{${srcsetStrings.join('}, {')}}];
+export var source = ${defaultSrcExport};
+
+export var srcset = [${srcsetStrings.join(', ')}];
 
 export var names = {
 	${namesStrings.join(',\n\t')}
 };
 `;
+}
+
+export function parseRequestOptions(request) {
+
+	if (typeof request !== 'string' || !request) {
+		return {};
+	}
+
+	const filePart = request.split('!').pop();
+
+	if (!filePart) {
+		return {};
+	}
+
+	const optionsPart = filePart.split('?').pop();
+	const options = optionsPart.split('&').reduce((options, pair) => {
+
+		const [
+			key,
+			value
+		] = pair.split('=');
+
+		switch (key) {
+
+			case 'width':
+				options.width = Number(value);
+				break;
+
+			case 'format':
+				options.format = value;
+				break;
+
+			default:
+		}
+
+		return options;
+	}, {});
+
+	return options;
 }
