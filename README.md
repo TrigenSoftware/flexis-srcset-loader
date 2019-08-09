@@ -55,15 +55,15 @@ CSS:
 
 ```css
 .image {
-	background-image: url(./image.jpg);
+    background-image: url(./image.jpg);
 }
 
 .webp .image {
-	background-image: url(./image.jpg?format=webp);
+    background-image: url(./image.jpg?format=webp);
 }
 
 .image.sm {
-	background-image: url(./image.jpg?width=320);
+    background-image: url(./image.jpg?width=320);
 }
 ```
 
@@ -82,7 +82,7 @@ module.exports = {
                         width:  [1, 1920, 1280, 720, 560, 320],
                         format: ['webp', 'jpg']
                     }],
-	                scalingUp: false
+                    scalingUp: false
                 }
             }
         }]
@@ -167,15 +167,15 @@ Add it to your `globals.d.ts`:
 
 ```ts
 declare module '*.jpg' {
-	const src: import('@flexis/srcset-loader/types').Src;
-	const source: import('@flexis/srcset-loader/types').Source;
-	const names: import('@flexis/srcset-loader/types').Names;
-	const srcset: import('@flexis/srcset-loader/types').Srcset;
-	export default src;
-	export {
+    const src: import('@flexis/srcset-loader/types').Src;
+    const source: import('@flexis/srcset-loader/types').Source;
+    const names: import('@flexis/srcset-loader/types').Names;
+    const srcset: import('@flexis/srcset-loader/types').Srcset;
+    export default src;
+    export {
         source,
-		names,
-		srcset
-	};
+        names,
+        srcset
+    };
 }
 ```
