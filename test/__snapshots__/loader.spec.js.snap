@@ -4,119 +4,57 @@ exports[`srcset-loader should emit files 1`] = `
 "
 export default __webpack_public_path__ + \\"asset.jpg\\";
 
+export var source = {
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	name: \\"jpg640\\",
+	width: 640,
+	height: 480,
+	src: __webpack_public_path__ + \\"asset.jpg\\"
+};
+
 export var srcset = [{
 	format: \\"webp\\",
 	type: \\"image/webp\\",
-	name: \\"webp3000\\",
-	width: 3000,
-	height: 1500,
-	src: __webpack_public_path__ + \\"asset.webp\\"
-}, {
-	format: \\"webp\\",
-	type: \\"image/webp\\",
-	name: \\"webp3200\\",
-	width: 3000,
-	height: 1500,
-	src: __webpack_public_path__ + \\"asset.webp\\"
-}, {
-	format: \\"webp\\",
-	type: \\"image/webp\\",
-	name: \\"webp1920\\",
-	width: 1920,
-	height: 960,
-	src: __webpack_public_path__ + \\"asset.webp\\"
-}, {
-	format: \\"webp\\",
-	type: \\"image/webp\\",
-	name: \\"webp1280\\",
-	width: 1280,
-	height: 640,
-	src: __webpack_public_path__ + \\"asset.webp\\"
-}, {
-	format: \\"webp\\",
-	type: \\"image/webp\\",
-	name: \\"webp720\\",
-	width: 720,
-	height: 360,
+	name: \\"webp640\\",
+	width: 640,
+	height: 480,
 	src: __webpack_public_path__ + \\"asset.webp\\"
 }, {
 	format: \\"webp\\",
 	type: \\"image/webp\\",
 	name: \\"webp560\\",
 	width: 560,
-	height: 280,
+	height: 420,
 	src: __webpack_public_path__ + \\"asset.webp\\"
 }, {
 	format: \\"webp\\",
 	type: \\"image/webp\\",
 	name: \\"webp320\\",
 	width: 320,
-	height: 160,
+	height: 240,
 	src: __webpack_public_path__ + \\"asset.webp\\"
-}, {
-	format: \\"jpg\\",
-	type: \\"image/jpeg\\",
-	name: \\"jpg3000\\",
-	width: 3000,
-	height: 1500,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
-}, {
-	format: \\"jpg\\",
-	type: \\"image/jpeg\\",
-	name: \\"jpg3200\\",
-	width: 3000,
-	height: 1500,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
-}, {
-	format: \\"jpg\\",
-	type: \\"image/jpeg\\",
-	name: \\"jpg1920\\",
-	width: 1920,
-	height: 960,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
-}, {
-	format: \\"jpg\\",
-	type: \\"image/jpeg\\",
-	name: \\"jpg1280\\",
-	width: 1280,
-	height: 640,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
-}, {
-	format: \\"jpg\\",
-	type: \\"image/jpeg\\",
-	name: \\"jpg720\\",
-	width: 720,
-	height: 360,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
-}, {
+}, source, {
 	format: \\"jpg\\",
 	type: \\"image/jpeg\\",
 	name: \\"jpg560\\",
 	width: 560,
-	height: 280,
+	height: 420,
 	src: __webpack_public_path__ + \\"asset.jpg\\"
 }, {
 	format: \\"jpg\\",
 	type: \\"image/jpeg\\",
 	name: \\"jpg320\\",
 	width: 320,
-	height: 160,
+	height: 240,
 	src: __webpack_public_path__ + \\"asset.jpg\\"
 }];
 
 export var names = {
-	\\"webp3000\\": __webpack_public_path__ + \\"asset.webp\\",
-	\\"webp3200\\": __webpack_public_path__ + \\"asset.webp\\",
-	\\"webp1920\\": __webpack_public_path__ + \\"asset.webp\\",
-	\\"webp1280\\": __webpack_public_path__ + \\"asset.webp\\",
-	\\"webp720\\": __webpack_public_path__ + \\"asset.webp\\",
+	\\"webp640\\": __webpack_public_path__ + \\"asset.webp\\",
 	\\"webp560\\": __webpack_public_path__ + \\"asset.webp\\",
 	\\"webp320\\": __webpack_public_path__ + \\"asset.webp\\",
-	\\"jpg3000\\": __webpack_public_path__ + \\"asset.jpg\\",
-	\\"jpg3200\\": __webpack_public_path__ + \\"asset.jpg\\",
-	\\"jpg1920\\": __webpack_public_path__ + \\"asset.jpg\\",
-	\\"jpg1280\\": __webpack_public_path__ + \\"asset.jpg\\",
-	\\"jpg720\\": __webpack_public_path__ + \\"asset.jpg\\",
+	\\"jpg640\\": __webpack_public_path__ + \\"asset.jpg\\",
 	\\"jpg560\\": __webpack_public_path__ + \\"asset.jpg\\",
 	\\"jpg320\\": __webpack_public_path__ + \\"asset.jpg\\"
 };

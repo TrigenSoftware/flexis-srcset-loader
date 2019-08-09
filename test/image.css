@@ -1,0 +1,9 @@
+
+.image {
+	background-image: url(./Felix.jpg?width=320&format=webp);
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 640px;
+	height: 480px;
+}

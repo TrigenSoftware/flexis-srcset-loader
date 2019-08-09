@@ -24,6 +24,9 @@ export default function compile(fixtureEntry, options = {}, writeToFs = false) {
 					loader: path.resolve(__dirname, '../src/index.js'),
 					options
 				}
+			}, {
+				test: /\.css$/,
+				use:  ['style-loader', 'css-loader']
 			}]
 		}
 	});
