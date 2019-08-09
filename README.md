@@ -226,13 +226,13 @@ Add it to your `globals.d.ts`:
 declare module '*.jpg' {
     const src: import('@flexis/srcset-loader/types').Src;
     const source: import('@flexis/srcset-loader/types').Source;
-    const names: import('@flexis/srcset-loader/types').Names;
     const srcset: import('@flexis/srcset-loader/types').Srcset;
+    const names: import('@flexis/srcset-loader/types').Names;
     export default src;
     export {
         source,
-        names,
-        srcset
+        srcset,
+        names
     };
 }
 ```
