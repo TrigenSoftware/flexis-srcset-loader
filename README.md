@@ -192,9 +192,35 @@ interface IRule extends ICommonConfig {
 }
 
 /**
+ * https://github.com/webpack-contrib/file-loader
+ */
+interface ILoaderOptions {
+    /**
+     * https://github.com/webpack-contrib/file-loader#name
+     */
+    name: string|Function;
+    /**
+     * https://github.com/webpack-contrib/file-loader#outputpath
+     */
+    outputPath: string|Function;
+    /**
+     * https://github.com/webpack-contrib/file-loader#publicpath
+     */
+    publicPath: string|Function;
+    /**
+     * https://github.com/webpack-contrib/file-loader#context
+     */
+    context: string;
+    /**
+     * https://github.com/webpack-contrib/file-loader#emitfile
+     */
+    emitFile: boolean;
+}
+
+/**
  * Options:
  */
-interface IConfig extends ICommonConfig {
+interface IConfig extends ICommonConfig, ILoaderOptions {
     /**
      * Rules.
      */
