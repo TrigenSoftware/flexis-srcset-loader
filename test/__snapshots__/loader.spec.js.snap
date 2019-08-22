@@ -60,3 +60,5 @@ export var names = {
 };
 "
 `;
+
+exports[`srcset-loader should emit files 2`] = `"module.exports = __webpack_public_path__ + \\"asset.jpg\\";"`;

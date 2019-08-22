@@ -232,7 +232,12 @@ interface IConfig extends ICommonConfig, ILoaderOptions {
      */
     exports?: {
         width?: number;
-        format?: 'webp' | 'jpg' | 'png' | 'gif' | 'svg'
+        format?: 'webp' | 'jpg' | 'png' | 'gif' | 'svg',
+        /**
+         * Use commonjs export instead of ES6 exports.
+         * Notice: Vue doesn't support ES6 exports with loaders, so you should set this prop to `true`.
+         */
+        default?: boolean;
     };
 }
 ```

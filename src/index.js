@@ -48,8 +48,9 @@ export default async function loader(imageBuffer) {
 	await attachMetadata(imageSource);
 
 	const exports = {
-		format: imageSource.extname.replace('.', ''),
-		width:  imageSource.metadata.width,
+		format:  imageSource.extname.replace('.', ''),
+		width:   imageSource.metadata.width,
+		default: false,
 		...options.exports,
 		...requestOptions
 	};
@@ -96,6 +97,7 @@ export default async function loader(imageBuffer) {
 		callback(null, createModuleString(
 			exports.format,
 			exports.width,
+			exports.default,
 			srcset
 		));
 		return;

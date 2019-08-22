@@ -3,6 +3,7 @@ import src, {
 	srcset,
 	names
 } from './Felix.jpg';
+import defaultImage from './Felix.jpg?default';
 import './image.css';
 
 function img(source, srcset) {
@@ -93,4 +94,4 @@ ${location.search !== '?css' ? '' : `<h2>CSS:</h2>
 <figure class="image"></figure>`}
 `;
 
-console.log(src, source, srcset, names);
+console.log(src, defaultImage, source, srcset, names);

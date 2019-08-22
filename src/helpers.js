@@ -65,7 +65,7 @@ export function getPublicPath({
 	return resultPublicPath;
 }
 
-export function createModuleString(defaultFormat, defaultWidth, srcset) {
+export function createModuleString(defaultFormat, defaultWidth, exportDefault, srcset) {
 
 	let defaultExport = JSON.stringify('');
 	let defaultSrcExportIndex = -1;
@@ -113,6 +113,10 @@ export function createModuleString(defaultFormat, defaultWidth, srcset) {
 		srcsetStrings.push(srcsetString);
 	});
 
+	if (exportDefault) {
+		return `module.exports = ${defaultExport};`;
+	}
+
 	return `
 export default ${defaultExport};
 
@@ -154,6 +158,10 @@ export function parseRequestOptions(request) {
 
 			case 'format':
 				options.format = value;
+				break;
+
+			case 'default':
+				options.default = true;
 				break;
 
 			default:

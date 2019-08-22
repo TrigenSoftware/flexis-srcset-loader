@@ -19,10 +19,17 @@ describe('srcset-loader', () => {
 		});
 		const {
 			source
-		} = stats.modules[6].modules[1];
+		} = stats.modules[7].modules[1];
+		const {
+			source: sourceDefault
+		} = stats.modules[0];
 		const artifacts = fs.readdirSync(pathToArtifacts);
 
 		expect(source.replace(
+			/(__webpack_public_path__ \+ ").*(\.\w+")/gi,
+			'$1asset$2'
+		)).toMatchSnapshot();
+		expect(sourceDefault.replace(
 			/(__webpack_public_path__ \+ ").*(\.\w+")/gi,
 			'$1asset$2'
 		)).toMatchSnapshot();
