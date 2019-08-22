@@ -24,6 +24,10 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [1.3.0] - 2019-08-22
+### Added
+- `default` exports option.
+
 ## [1.2.0] - 2019-08-09
 ### Changed
 - New docs.
