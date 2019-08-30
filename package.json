@@ -55,7 +55,7 @@
     "css-loader": "^3.2.0",
     "eslint-plugin-jest": "^22.15.2",
     "memory-fs": "^0.4.1",
-    "rollup-plugin-eslint": "^6.0.0",
+    "rollup-plugin-eslint": "^7.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2"
   },
