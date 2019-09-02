@@ -248,7 +248,6 @@ interface IConfig extends ICommonConfig, ILoaderOptions {
 - [`Matcher`](https://trigensoftware.github.io/flexis-srcset/modules/_helpers_.html#matcher)
 - [`SupportedExtension`](https://trigensoftware.github.io/flexis-srcset/modules/_extensions_.html#supportedextension)
 
-
 ## Using with TypeScript
 
 Add it to your `globals.d.ts`:
