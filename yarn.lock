@@ -1279,12 +1279,12 @@
     rollup-plugin-babel-minify "^9.0.0"
     rollup-plugin-commonjs "^10.0.0"
 
-"@trigen/scripts-plugin-size-limit@2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-size-limit/-/scripts-plugin-size-limit-2.7.0.tgz#a57925a3e45a6d89e29853665c323c6af418e25c"
-  integrity sha512-TGSvwAKAhAs9+3NUZ0k5eJ94z/BMPrOwfpPiIIgqwZEYSJH/uwMV+eg+4752zDeL29XaMavtN1z5Fizitz+c4g==
+"@trigen/scripts-plugin-size-limit@3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-size-limit/-/scripts-plugin-size-limit-3.5.0.tgz#8260ebbd2c348157e0761a018945b934ff3e0e85"
+  integrity sha512-AThPVbRX+f0niX+WmOuLGLoSSWSWnf1J3rd9bvdn9QEabPIu0rSFUG7IrBq9TrImXhvpKmj4NWZE57O9cmGWtw==
   dependencies:
-    "@trigen/scripts" "^2.7.0"
+    "@trigen/scripts" "^3.5.0"
     size-limit "^2.0.0"
 
 "@trigen/scripts-preset-lib@2.7.2":
@@ -1303,6 +1303,18 @@
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.7.0.tgz#7a36334f65a868f8a424c73c3a36e6bfa0964b67"
   integrity sha512-xvRY6StDwCplpPQK1JzKopnYEQnhxa6mxPJz5D+ut39SblwcZWGcFFDG5QbbBWhurq9Lb0bnKhSfLNbHmWnLpw==
+  dependencies:
+    "@babel/runtime" "^7.4.2"
+    chalk "^2.4.2"
+    core-js "3"
+    immutability-helper "^3.0.0"
+    rcfile "^1.0.3"
+    resolve-cwd "^3.0.0"
+
+"@trigen/scripts@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-3.5.0.tgz#f5658e086b8c2d4e34ff4c38f5ffe8e2f40db206"
+  integrity sha512-5S3kk+UoyPJIasiSiy323SDw3eNZcN7HD7edVQCDGC9DGm/kNHeV9k05SKzXs3v23TZ6kpB+fBoI9KaHtaMYJg==
   dependencies:
     "@babel/runtime" "^7.4.2"
     chalk "^2.4.2"
