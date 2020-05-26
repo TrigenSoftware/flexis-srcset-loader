@@ -24,6 +24,10 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [2.0.0] - 2020-05-26
+### Breaking
+- Requires `Node 10+`
+
 ## [1.3.0] - 2019-08-22
 ### Added
 - `default` exports option.
