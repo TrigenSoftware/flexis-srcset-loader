@@ -1,5 +1,7 @@
 import path from 'path';
-import loaderUtils from 'loader-utils';
+import {
+	interpolateName
+} from 'loader-utils';
 
 export function getContext(options, ctx) {
 	return options.context
@@ -11,7 +13,7 @@ export function getUrl({
 	regExp
 }, ctx, context, image) {
 
-	const url = loaderUtils.interpolateName(ctx, name, {
+	const url = interpolateName(ctx, name, {
 		content: image.contents,
 		context,
 		regExp
