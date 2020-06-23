@@ -1,7 +1,22 @@
 [
 	{
-		"path": "lib/index.js",
-		"limit": "9.1 KB",
+		"path": "package/index.js",
+		"limit": "12.5 KB",
+		"webpack": false
+	},
+	{
+		"path": "package/runtime.js",
+		"limit": "2.2 KB",
+		"webpack": false
+	},
+	{
+		"path": "package/runtime.es.js",
+		"limit": "2.2 KB",
+		"webpack": false
+	},
+	{
+		"path": "package/runtime.babel.js",
+		"limit": "1.9 KB",
 		"webpack": false
 	}
 ]

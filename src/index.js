@@ -1,5 +1,5 @@
 import Vinyl from 'vinyl';
-import SrcsetGenerator, {
+import SrcSetGenerator, {
 	attachMetadata,
 	matchImage
 } from '@flexis/srcset';
@@ -8,6 +8,7 @@ import {
 } from 'loader-utils';
 import {
 	getContext,
+	getResourceId,
 	getUrl,
 	getOutputPath,
 	getPublicPath,
@@ -16,7 +17,7 @@ import {
 } from './helpers';
 import mimeTypes from './mimeTypes';
 
-function defaultPostfix(width, mul, format) {
+function defaultResourceId(width, _, format) {
 	return `${format}${width}`;
 }
 
@@ -30,29 +31,30 @@ export default async function loader(imageBuffer) {
 		optimization:     false,
 		skipOptimization: false,
 		scalingUp:        true,
-		postfix:          defaultPostfix,
+		resourceId:       defaultResourceId,
 		rules:            [{}],
-		...inputOptions
+		...inputOptions,
+		...requestOptions
 	};
 	const {
 		emitFile,
 		rules
 	} = options;
 	const context = getContext(options, this);
-	const generator = new SrcsetGenerator(options);
+	const generator = new SrcSetGenerator(options);
 	const imageSource = new Vinyl({
+		path:     this.resourcePath,
 		contents: imageBuffer
 	});
-	const srcset = [];
+	const srcSet = [];
 
 	await attachMetadata(imageSource);
 
 	const moduleExports = {
-		format:  imageSource.extname.replace('.', ''),
-		width:   imageSource.metadata.width,
-		default: false,
-		...options.exports,
-		...requestOptions
+		format:   imageSource.extname.replace('.', ''),
+		width:    imageSource.metadata.width,
+		commonjs: false,
+		...options.exports
 	};
 
 	try {
@@ -68,18 +70,20 @@ export default async function loader(imageBuffer) {
 
 					for await (const image of images) {
 
+						const format = image.extname.replace('.', '');
+						const id = getResourceId(options, image, format);
 						const url = getUrl(options, this, context, image);
 						const outputPath = getOutputPath(options, this, context, url);
 						const publicPath = getPublicPath(options, this, context, url, outputPath);
-						const format = image.extname.replace('.', '');
 
-						srcset.push({
+						srcSet.push({
+							id,
 							format,
-							type:   mimeTypes[format],
-							name:   image.postfix,
-							width:  image.metadata.width,
-							height: image.metadata.height,
-							src:    publicPath
+							type:             mimeTypes[format],
+							width:            image.metadata.width,
+							height:           image.metadata.height,
+							originMultiplier: image.metadata.originMultiplier,
+							url:              publicPath
 						});
 
 						if (emitFile !== false) {
@@ -95,10 +99,8 @@ export default async function loader(imageBuffer) {
 		);
 
 		callback(null, createModuleString(
-			moduleExports.format,
-			moduleExports.width,
-			moduleExports.default,
-			srcset
+			moduleExports,
+			srcSet
 		));
 		return;
 

@@ -39,92 +39,102 @@ npm i -D @flexis/srcset-loader
 yarn add -D @flexis/srcset-loader
 ```
 
-## Usage
+## Usage example
 
 JavaScript:
 
 ```js
-import src, {
-    source,
-    srcset,
-    names
-} from './image.jpg'
+import {
+    groupBy,
+    filterBy,
+    toString
+} from '@flexis/srcset-loader/runtime';
+import url, {
+    src,
+    srcSet,
+    srcMap
+} from './image.jpg';
 ```
 
 CSS:
 
 ```css
 .image {
-    background-image: url(./image.jpg);
+    background-image: url('./image.jpg');
 }
 
 .webp .image {
-    background-image: url(./image.jpg?format=webp);
+    background-image: url('./image.jpg?{ "format": "webp" }');
 }
 
 .image.sm {
-    background-image: url(./image.jpg?width=320);
+    background-image: url('./image.jpg?{ "width": 320 }');
 }
 ```
 
-Description:
+## Description
 
-```ts
-interface ISrc {
-    /**
-     * Image file format.
-     **/
-    format: 'webp' | 'jpg' | 'png' | 'gif' | 'svg';
-    /**
-     * Mime type of an image.
-     * Example: 'image/svg+xml', 'image/jpeg'...
-     **/
-    type: string;
-    /**
-     * Postfix, computed by loader.
-     * By default: `${format}${width}`
-     * Example: 'jpg320', 'webp1280'...
-     **/
-    name: string;
-    /**
-     * Image width.
-     **/
-    width: number;
-    /**
-     * Image height.
-     **/
-    height: number;
-    /**
-     * Image url.
-     **/
-    src: string;
-}
+### `Src` object
 
-/**
- * Source image.
- */
-const source: ISrc;
+| Option | Type | Description |
+|--------|------|-------------|
+| id | string | Id, computed with `resourceId` option. |
+| format | 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Image file format. |
+| type | string | Mime type of image. |
+| width | number | Image width. |
+| height | number | Image height. |
+| url | string | Image url. |
 
-/**
- * All output images.
- */
-const srcset: ISrc[];
+### Loader exports
 
-/**
- * Name-to-url map.
- * Example: `{ jpg320: 'image.jpg', webp1280: 'image.webp' }`
- **/
-const names: Record<string, string>;
+| Option | Type | Description |
+|--------|------|-------------|
+| default | string | Source image url. |
+| src | [Src](#src-object) | Source image. |
+| srcSet | [Src](#src-object)\[\] | Generated images. |
+| srcMap | Record\<string, string\> | Id-to-url map. |
 
-export default source.src;
-export {
-    source,
-    srcset,
-    names
-};
+### Runtime exports
+
+Located in `@flexis/srcset-loader/runtime`.
+
+| Option | Type | Description |
+|--------|------|-------------|
+| groupBy | (srcSet: [Src](#src-object)\[\], field: string) => \[string, [Src](#src-object)\[\]\]\[\] | Group images by field. |
+| filterBy | (srcSet: [Src](#src-object)\[\], field: string, value: any) => [Src](#src-object)\[\] | Filter images by field value. |
+| toString | (srcSet: [Src](#src-object)\[\]) => string | Make `srcset` attribute string. |
+
+### Query parameters
+
+With @flexis/srcset-loader you can add query parameters to image imports. Examples:
+
+Generate image with given rule:
+
+```js
+import url from './image.jpg?{ "width": [1, 0.5], "format": ["webp", "jpg"] }';
+```
+
+Select default exportable image variant:
+
+```js
+import url from './image.jpg?width=320';
+```
+
+Select default exportable image from given rule:
+
+```js
+import url from './image.jpg?width=0.5&{ "width": [1, 0.5], "format": ["webp", "jpg"] }';
+```
+
+Use commonjs exports:
+
+```js
+const url = require('./image.jpg?commonjs');
 ```
 
 ## Configuration
+
+Example:
 
 ```js
 module.exports = {
@@ -147,106 +157,48 @@ module.exports = {
 }
 ```
 
-## Loader options
+### Common options
 
-```ts
-interface ICommonConfig {
-    /**
-     * Object with Sharp configs for each supported format.
-     */
-    processing?: Partial<IProcessingConfig>;
-    /**
-     * Object with imagemin plugins for each format.
-     */
-    optimization?: Partial<IOptimizationConfig>;
-    /**
-     * Do not optimize output images.
-     */
-    skipOptimization?: boolean;
-    /**
-     * Generate images with higher resolution than they's sources are.
-     */
-    scalingUp?: boolean;
-    /**
-     * Postfix string or function to generate postfix for image.
-     */
-    postfix?: Postfix;
-}
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| processing | Partial\<[IProcessingConfig]\> | Object with Sharp configs for each supported format. | see [defaults.ts] |
+| optimization | Partial\<[IOptimizationConfig]\> | Object with imagemin plugins for each format. | see [defaults.ts] |
+| skipOptimization | boolean | Do not optimize output images. | `false` |
+| scalingUp | boolean | Generate images with higher resolution than they's sources are. | `true` |
+| postfix | [Postfix] | Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier. | see [defaults.ts] |
 
-interface IRule extends ICommonConfig {
-    /**
-     * There is support of 3 types of matchers:
-     * 1. Glob pattern of file path;
-     * 2. Media query to match image by size;
-     * 3. `(path: string, size: ISize, source: Vinyl) => boolean` function.
-     */
-    match?: Matcher;
-    /**
-     * Output image(s) formats to convert.
-     */
-    format?: SupportedExtension|SupportedExtension[];
-    /**
-     * Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier.
-     */
-    width?: number|number[];
-}
+### Rule options
 
-/**
- * https://github.com/webpack-contrib/file-loader
- */
-interface ILoaderOptions {
-    /**
-     * https://github.com/webpack-contrib/file-loader#name
-     */
-    name: string|Function;
-    /**
-     * https://github.com/webpack-contrib/file-loader#outputpath
-     */
-    outputPath: string|Function;
-    /**
-     * https://github.com/webpack-contrib/file-loader#publicpath
-     */
-    publicPath: string|Function;
-    /**
-     * https://github.com/webpack-contrib/file-loader#context
-     */
-    context: string;
-    /**
-     * https://github.com/webpack-contrib/file-loader#emitfile
-     */
-    emitFile: boolean;
-}
+Extends [common options](#common-options).
 
-/**
- * Options:
- */
-interface IConfig extends ICommonConfig, ILoaderOptions {
-    /**
-     * Rules.
-     */
-    rules?: IRule[];
-    /**
-     * Default exported image description.
-     * Also you can pass it through query parameters.
-     * Example: `background-image: url(./image.jpg?width=320&format=webp);`
-     */
-    exports?: {
-        width?: number;
-        format?: 'webp' | 'jpg' | 'png' | 'gif' | 'svg',
-        /**
-         * Use commonjs export instead of ES6 exports.
-         * Notice: Vue doesn't support ES6 exports with loaders, so you should set this prop to `true`.
-         */
-        default?: boolean;
-    };
-}
-```
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| match | [Matcher] | There is support of 3 types of matchers:<br>1. Glob pattern of file path;<br>2. Media query to match image by size;<br>3. `(path: string, size: ISize, source: Vinyl) => boolean` function. | all images |
+| format | [SupportedExtension]\|[SupportedExtension]\[\] | Output image(s) formats to convert. | no convert |
+| width | number\|number[] | Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier. | `[1]` |
 
-- [`IProcessingConfig`](https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.iprocessingconfig.html)
-- [`IOptimizationConfig`](https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.ioptimizationconfig.html)
-- [`Postfix`](https://trigensoftware.github.io/flexis-srcset/modules/_types_.html#postfix)
-- [`Matcher`](https://trigensoftware.github.io/flexis-srcset/modules/_helpers_.html#matcher)
-- [`SupportedExtension`](https://trigensoftware.github.io/flexis-srcset/modules/_extensions_.html#supportedextension)
+### Loader options
+
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| name | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#name) |  |
+| outputPath | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#outputpath) | |
+| publicPath | string\|Function |See [file-loader docs](https://github.com/webpack-contrib/file-loader#publicpath) | |
+| context | string | See [file-loader docs](https://github.com/webpack-contrib/file-loader#context) | |
+| emitFile | boolean | See [file-loader docs](https://github.com/webpack-contrib/file-loader#emitfile) | |
+| regExp | RegExp | See [file-loader docs](https://github.com/webpack-contrib/file-loader#regexp) | |
+| rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
+| exports | object | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
+| exports.width | number | Width to match image. | |
+| exports.format | 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Format to match image. | |
+| exports.commonjs | boolean | Use CommonJS exports.<br>Notice: Vue doesn't support ES6 exports with loaders, so you should set this prop to `true`. | `false` |
+
+[defaults.ts]: https://github.com/TrigenSoftware/flexis-srcset/tree/master/src/defaults.ts
+[IProcessingConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.iprocessingconfig.html
+[IOptimizationConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.ioptimizationconfig.html
+[Postfix]: https://trigensoftware.github.io/flexis-srcset/modules/_types_.html#postfix
+[Matcher]: https://trigensoftware.github.io/flexis-srcset/modules/_helpers_.html#matcher
+[SupportedExtension]: https://trigensoftware.github.io/flexis-srcset/modules/_extensions_.html#supportedextension
 
 ## Using with TypeScript
 
@@ -254,15 +206,15 @@ Add it to your `globals.d.ts`:
 
 ```ts
 declare module '*.jpg' {
+    const url: import('@flexis/srcset-loader/types').Url;
     const src: import('@flexis/srcset-loader/types').Src;
-    const source: import('@flexis/srcset-loader/types').Source;
-    const srcset: import('@flexis/srcset-loader/types').Srcset;
-    const names: import('@flexis/srcset-loader/types').Names;
-    export default src;
+    const srcSet: import('@flexis/srcset-loader/types').SrcSet;
+    const srcMap: import('@flexis/srcset-loader/types').SrcMap;
+    export default url;
     export {
-        source,
-        srcset,
-        names
+        src,
+        srcSet,
+        srcMap
     };
 }
 ```

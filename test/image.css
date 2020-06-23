@@ -1,6 +1,6 @@
 
 .image {
-	background-image: url(./Felix.jpg?width=320&format=webp);
+	background-image: url(./Felix.jpg?{ "width": 320, "forma": "webp" });
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;

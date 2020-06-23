@@ -2,5 +2,11 @@
 	"extends": "trigen/base",
 	"env": {
 		"node": true
-	}
+	},
+	"overrides": [{
+		"files": [
+			"babel.config.js"
+		],
+		"extends": "trigen/commonjs"
+	}]
 }

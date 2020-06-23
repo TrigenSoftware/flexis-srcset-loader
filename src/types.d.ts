@@ -1,4 +1,13 @@
-interface ISrc {
+/**
+ * Image info.
+ */
+export type Src = {
+	/**
+	 * Id, computed with `resourceId` option.
+	 * By default: `${format}${width}`
+	 * Example: 'jpg320', 'webp1280'...
+	 **/
+	id: string;
 	/**
 	 * Image file format.
 	 **/
@@ -8,12 +17,6 @@ interface ISrc {
 	 * Example: 'image/svg+xml', 'image/jpeg'...
 	 **/
 	type: string;
-	/**
-	 * Postfix, computed by loader.
-	 * By default: `${format}${width}`
-	 * Example: 'jpg320', 'webp1280'...
-	 **/
-	name: string;
 	/**
 	 * Image width.
 	 **/
@@ -25,26 +28,21 @@ interface ISrc {
 	/**
 	 * Image url.
 	 **/
-	src: string;
+	url: string;
 }
 
 /**
- * Source image url.
+ * Image url.
  */
-export type Src = string;
+export type Url = Src['url'];
 
 /**
- * Source image info.
+ * SrcSet list.
  */
-export type Source = ISrc;
+export type SrcSet = Src[];
 
 /**
- * Srcset list.
- */
-export type Srcset = ISrc[];
-
-/**
- * Name-to-url map.
+ * id-to-url map.
  * Example: `{ jpg320: 'image.jpg', webp1280: 'image.webp' }`
  **/
-export type Names = Record<string, string>;
+export type SrcMap = Record<string, string>;

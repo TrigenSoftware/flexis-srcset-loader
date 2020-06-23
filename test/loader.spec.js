@@ -19,9 +19,9 @@ describe('srcset-loader', () => {
 		});
 		const {
 			source
-		} = stats.modules[7].modules[1];
+		} = stats.modules[7].modules[2];
 		const {
-			source: sourceDefault
+			source: commonjsSource
 		} = stats.modules[0];
 		const artifacts = fs.readdirSync(pathToArtifacts);
 
@@ -29,10 +29,10 @@ describe('srcset-loader', () => {
 			/(__webpack_public_path__ \+ ").*(\.\w+")/gi,
 			'$1asset$2'
 		)).toMatchSnapshot();
-		expect(sourceDefault.replace(
+		expect(commonjsSource.replace(
 			/(__webpack_public_path__ \+ ").*(\.\w+")/gi,
 			'$1asset$2'
 		)).toMatchSnapshot();
-		expect(artifacts.length).toBe(7);
+		expect(artifacts.length).toBe(8);
 	});
 });

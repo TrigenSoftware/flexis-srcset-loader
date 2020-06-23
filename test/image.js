@@ -1,50 +1,38 @@
-import src, {
-	source,
-	srcset,
-	names
+import {
+	groupBy,
+	filterBy,
+	toString
+} from '../src/runtime';
+import imgUrl, {
+	src,
+	srcSet,
+	srcMap
 } from './Felix.jpg';
-import defaultImage from './Felix.jpg?default';
+import defaultImage from './Felix.jpg?commonjs';
+import * as x2 from './Felix.jpg?width=1';
+import * as x1 from './Felix.jpg?width=.5';
+import * as w64 from './Felix.jpg?{ "width": 64, "format": "webp" }';
 import './image.css';
 
-function img(source, srcset) {
+function img(src, srcSet) {
 
-	const srcsetString = !srcset ? '' : srcset
-		.map(({
-			format,
-			src,
-			width
-		}) => (format !== 'jpg' ? null : `${src} ${width}w`))
-		.filter(Boolean)
-		.join(',\n');
-	const srcsetAttr = !srcsetString ? '' : ` srcset='${srcsetString}'`;
+	const srcSetString = !srcSet ? '' : toString(
+		filterBy(srcSet, 'format', 'jpg')
+	);
+	const srcSetAttr = !srcSetString ? '' : ` srcset='${srcSetString}'`;
 
-	return `<img${srcsetAttr} src='${source.src}' style="max-width: ${source.width}px">`;
+	return `<img${srcSetAttr} src='${src.url}' style="max-width: ${src.width}px">`;
 }
 
-function picture(source, srcset) {
+function picture(src, srcSet) {
 
-	const types = {};
-
-	srcset.forEach(({
-		type,
-		src,
-		width
-	}) => {
-
-		if (!types[type]) {
-			types[type] = [];
-		}
-
-		const srcQuery = `${src} ${width}w`;
-
-		types[type].push(srcQuery);
-	});
+	const entries = groupBy(srcSet, 'type');
 
 	return `<picture>
-	${Object.entries(types).map(([type, srcset]) =>
-		`<source type='${type}' srcset='${srcset.join(',\n')}'>`
+	${entries.map(([type, srcset]) =>
+		`<source type='${type}' srcset='${toString(srcset)}'>`
 	).join('\n')}
-	${img(source, srcset)}
+	${img(src, entries)}
 </picture>`;
 }
 
@@ -80,18 +68,23 @@ img {
 </nav>
 ${location.search !== '?img' ? '' : `<h2>Source image:</h2>
 <figure>
-	${img(source)}
+	${img(src)}
 </figure>`}
 ${location.search !== '?srcset' && location.search !== '' ? '' : `<h2>Source set:</h2>
 <figure>
-	${img(source, srcset)}
+	${img(src, srcSet)}
 </figure>`}
 ${location.search !== '?picture' ? '' : `<h2>Picture:</h2>
 <figure>
-	${picture(source, srcset)}
+	${picture(src, srcSet)}
 </figure>`}
 ${location.search !== '?css' ? '' : `<h2>CSS:</h2>
 <figure class="image"></figure>`}
 `;
 
-console.log(src, defaultImage, source, srcset, names);
+console.log(imgUrl, defaultImage, src, srcSet, srcMap);
+console.log('x1', x1);
+console.log('x2', x2);
+console.log('w64', w64);
+console.log('groupBy', groupBy(srcSet, 'type'));
+console.log('filterBy', filterBy(srcSet, 'format', 'jpg'));

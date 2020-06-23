@@ -6,26 +6,51 @@ import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import pkg from './package.json';
 
-const plugins = [
-	eslint({
-		exclude:      ['**/*.json', 'node_modules/**'],
-		throwOnError: true
-	}),
-	commonjs(),
-	babel({
-		babelHelpers:       'runtime',
-		skipPreflightCheck: true
-	})
-];
+function getPlugins(transpile = true) {
+	return [
+		eslint({
+			exclude:      ['**/*.json', 'node_modules/**'],
+			throwOnError: true
+		}),
+		commonjs(),
+		transpile && babel({
+			babelHelpers:       'runtime',
+			skipPreflightCheck: true
+		})
+	].filter(Boolean);
+}
 
-export default {
+export default [{
 	input:    'src/index.js',
-	plugins,
+	plugins:  getPlugins(),
 	external: external(pkg, true),
 	output:   {
-		file:      pkg.main,
+		file:      'lib/index.js',
 		format:    'cjs',
 		exports:   'named',
 		sourcemap: 'inline'
 	}
-};
+}, {
+	input:    'src/runtime.js',
+	plugins:  getPlugins(),
+	external: external(pkg, true),
+	output:   [{
+		file:      'lib/runtime.es.js',
+		format:    'es',
+		sourcemap: 'inline'
+	}, {
+		file:      'lib/runtime.js',
+		format:    'cjs',
+		exports:   'named',
+		sourcemap: 'inline'
+	}]
+}, {
+	input:    'src/runtime.js',
+	plugins:  getPlugins(false),
+	external: external(pkg, true),
+	output:   {
+		file:      'lib/runtime.babel.js',
+		format:    'es',
+		sourcemap: 'inline'
+	}
+}];

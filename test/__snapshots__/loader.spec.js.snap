@@ -2,59 +2,61 @@
 
 exports[`srcset-loader should emit files 1`] = `
 "
-export default __webpack_public_path__ + \\"asset.jpg\\";
+var url = __webpack_public_path__ + \\"asset.jpg\\";
 
-export var source = {
+export default url;
+
+export var src = {
+	id: \\"jpg640\\",
 	format: \\"jpg\\",
 	type: \\"image/jpeg\\",
-	name: \\"jpg640\\",
 	width: 640,
 	height: 480,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
+	url: url
 };
 
-export var srcset = [{
+export var srcSet = [{
+	id: \\"webp640\\",
 	format: \\"webp\\",
 	type: \\"image/webp\\",
-	name: \\"webp640\\",
 	width: 640,
 	height: 480,
-	src: __webpack_public_path__ + \\"asset.webp\\"
+	url: __webpack_public_path__ + \\"asset.webp\\"
 }, {
+	id: \\"webp560\\",
 	format: \\"webp\\",
 	type: \\"image/webp\\",
-	name: \\"webp560\\",
 	width: 560,
 	height: 420,
-	src: __webpack_public_path__ + \\"asset.webp\\"
+	url: __webpack_public_path__ + \\"asset.webp\\"
 }, {
+	id: \\"webp320\\",
 	format: \\"webp\\",
 	type: \\"image/webp\\",
-	name: \\"webp320\\",
 	width: 320,
 	height: 240,
-	src: __webpack_public_path__ + \\"asset.webp\\"
-}, source, {
+	url: __webpack_public_path__ + \\"asset.webp\\"
+}, src, {
+	id: \\"jpg560\\",
 	format: \\"jpg\\",
 	type: \\"image/jpeg\\",
-	name: \\"jpg560\\",
 	width: 560,
 	height: 420,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
+	url: __webpack_public_path__ + \\"asset.jpg\\"
 }, {
+	id: \\"jpg320\\",
 	format: \\"jpg\\",
 	type: \\"image/jpeg\\",
-	name: \\"jpg320\\",
 	width: 320,
 	height: 240,
-	src: __webpack_public_path__ + \\"asset.jpg\\"
+	url: __webpack_public_path__ + \\"asset.jpg\\"
 }];
 
-export var names = {
+export var srcMap = {
 	\\"webp640\\": __webpack_public_path__ + \\"asset.webp\\",
 	\\"webp560\\": __webpack_public_path__ + \\"asset.webp\\",
 	\\"webp320\\": __webpack_public_path__ + \\"asset.webp\\",
-	\\"jpg640\\": __webpack_public_path__ + \\"asset.jpg\\",
+	\\"jpg640\\": url,
 	\\"jpg560\\": __webpack_public_path__ + \\"asset.jpg\\",
 	\\"jpg320\\": __webpack_public_path__ + \\"asset.jpg\\"
 };

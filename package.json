@@ -1,6 +1,6 @@
 {
   "name": "@flexis/srcset-loader",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Highly customizable loader for generating responsive images.",
   "author": "dangreen",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/TrigenSoftware/flexis-srcset-loader/issues"
   },
-  "main": "lib/index.js",
+  "main": "index.js",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -19,11 +19,12 @@
     "lint": "trigen-scripts lint",
     "jest": "trigen-scripts jest",
     "checkSize": "trigen-scripts checkSize",
-    "test": "trigen-scripts test",
+    "test": "yarn build && trigen-scripts test",
     "start": "trigen-scripts start",
     "build:testBundle": "NODE_ENV=test babel-node test/buildTestBundle",
-    "build": "trigen-scripts build",
-    "cleanPublish": "trigen-scripts cleanPublish"
+		"build": "./scripts/buildPackage.sh",
+		"prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
+    "cleanPublish": "yarn build && trigen-scripts cleanPublish"
   },
   "keywords": [
     "srcset",
@@ -37,13 +38,13 @@
     "webpack": "^4.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.9.6",
-    "@flexis/srcset": "^2.0.0",
+    "@babel/runtime-corejs3": "^7.10.3",
+    "@flexis/srcset": "^3.0.0",
     "loader-utils": "^2.0.0",
     "vinyl": "^2.2.0"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.5.0",
+    "@size-limit/preset-small-lib": "^4.5.1",
     "@trigen/scripts": "6.0.0",
     "@trigen/scripts-plugin-babel": "6.1.1",
     "@trigen/scripts-plugin-eslint": "6.0.0",
@@ -51,15 +52,11 @@
     "@trigen/scripts-plugin-rollup": "6.0.0",
     "@trigen/scripts-plugin-size-limit": "6.0.0",
     "@trigen/scripts-preset-lib": "6.0.0",
-    "css-loader": "^3.2.0",
-    "eslint-plugin-jest": "^23.13.1",
+    "css-loader": "^3.6.0",
+    "eslint-plugin-jest": "^23.16.0",
     "memory-fs": "^0.5.0",
     "rollup-plugin-eslint": "^7.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2"
-  },
-  "files": [
-    "lib",
-    "types.d.ts"
-  ]
+  }
 }
