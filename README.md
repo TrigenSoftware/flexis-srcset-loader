@@ -183,7 +183,7 @@ Extends [common options](#common-options).
 
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
-| name | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#name) |  |
+| name | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#name). Also `[postfix]` placeholder is available.  |  |
 | outputPath | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#outputpath) | |
 | publicPath | string\|Function |See [file-loader docs](https://github.com/webpack-contrib/file-loader#publicpath) | |
 | context | string | See [file-loader docs](https://github.com/webpack-contrib/file-loader#context) | |
