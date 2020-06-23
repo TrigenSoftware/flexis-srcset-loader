@@ -179,6 +179,8 @@ Extends [common options](#common-options).
 
 ### Loader options
 
+Extends [common options](#common-options).
+
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
 | name | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#name) |  |
