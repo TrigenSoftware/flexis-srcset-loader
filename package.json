@@ -22,8 +22,8 @@
     "test": "yarn build && trigen-scripts test",
     "start": "trigen-scripts start",
     "build:testBundle": "NODE_ENV=test babel-node test/buildTestBundle",
-		"build": "./scripts/buildPackage.sh",
-		"prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
+    "build": "./scripts/buildPackage.sh",
+    "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
     "cleanPublish": "yarn build && trigen-scripts cleanPublish"
   },
   "keywords": [
@@ -53,7 +53,7 @@
     "@trigen/scripts-plugin-size-limit": "6.0.0",
     "@trigen/scripts-preset-lib": "6.0.0",
     "css-loader": "^3.6.0",
-    "eslint-plugin-jest": "^23.16.0",
+    "eslint-plugin-jest": "^23.17.1",
     "memory-fs": "^0.5.0",
     "rollup-plugin-eslint": "^7.0.0",
     "style-loader": "^1.0.0",
