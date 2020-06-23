@@ -165,7 +165,7 @@ module.exports = {
 | optimization | Partial\<[IOptimizationConfig]\> | Object with imagemin plugins for each format. | see [defaults.ts] |
 | skipOptimization | boolean | Do not optimize output images. | `false` |
 | scalingUp | boolean | Generate images with higher resolution than they's sources are. | `true` |
-| postfix | [Postfix] | Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier. | see [defaults.ts] |
+| postfix | [Postfix] | Postfix string or function to generate postfix for image. | see [defaults.ts] |
 
 ### Rule options
 
@@ -189,6 +189,7 @@ Extends [common options](#common-options).
 | context | string | See [file-loader docs](https://github.com/webpack-contrib/file-loader#context) | |
 | emitFile | boolean | See [file-loader docs](https://github.com/webpack-contrib/file-loader#emitfile) | |
 | regExp | RegExp | See [file-loader docs](https://github.com/webpack-contrib/file-loader#regexp) | |
+| resourceId | [Postfix] | Function to generate id for image. | ```(width, _, format) => `${format}${width}` ``` |
 | rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
 | exports | object | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 | exports.width | number | Width to match image. | |
