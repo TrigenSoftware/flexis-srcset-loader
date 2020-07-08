@@ -53,8 +53,7 @@ export default async function loader(imageBuffer) {
 	const moduleExports = {
 		format:   imageSource.extname.replace('.', ''),
 		width:    imageSource.metadata.width,
-		commonjs: false,
-		...options.exports
+		commonjs: false
 	};
 	let moduleExportsFromRule = null;
 
@@ -102,7 +101,12 @@ export default async function loader(imageBuffer) {
 		}
 
 		if (moduleExportsFromRule) {
-			Object.assign(moduleExports, moduleExportsFromRule);
+			Object.assign(
+				moduleExports,
+				inputOptions.exports,
+				moduleExportsFromRule,
+				requestOptions.export
+			);
 		}
 
 		callback(null, createModuleString(
