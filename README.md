@@ -166,6 +166,7 @@ module.exports = {
 | skipOptimization | boolean | Do not optimize output images. | `false` |
 | scalingUp | boolean | Generate images with higher resolution than they's sources are. | `true` |
 | postfix | [Postfix] | Postfix string or function to generate postfix for image. | see [defaults.ts] |
+| resourceId | [Postfix] | Function to generate id for image. | ```(width, _, format) => `${format}${width}` ``` |
 
 ### Exports options
 
@@ -199,7 +200,6 @@ Extends [common options](#common-options).
 | context | string | See [file-loader docs](https://github.com/webpack-contrib/file-loader#context) | |
 | emitFile | boolean | See [file-loader docs](https://github.com/webpack-contrib/file-loader#emitfile) | |
 | regExp | RegExp | See [file-loader docs](https://github.com/webpack-contrib/file-loader#regexp) | |
-| resourceId | [Postfix] | Function to generate id for image. | ```(width, _, format) => `${format}${width}` ``` |
 | rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
 | exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 

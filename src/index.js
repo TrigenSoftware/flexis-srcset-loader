@@ -70,7 +70,10 @@ export default async function loader(imageBuffer) {
 				for await (const image of images) {
 
 					const format = image.extname.replace('.', '');
-					const id = getResourceId(options, image, format);
+					const id = getResourceId({
+						...options,
+						...rule
+					}, image, format);
 					const url = getUrl(options, this, context, image);
 					const outputPath = getOutputPath(options, this, context, url);
 					const publicPath = getPublicPath(options, this, context, url, outputPath);
