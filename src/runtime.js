@@ -52,10 +52,14 @@ export function filterBy(srcSet, field, value) {
  * @returns {string} `srcset` attribute string.
  */
 export function toString(srcSet) {
-	return srcSet
-		.map(({
-			url,
-			width
-		}) => `${url} ${width}w`)
-		.join(',\n');
+	return srcSet.length > 1
+		? srcSet
+			.map(({
+				url,
+				width
+			}) => `${url} ${width}w`)
+			.join(', ')
+		: srcSet.length > 0
+			? srcSet[0].url
+			: '';
 }
