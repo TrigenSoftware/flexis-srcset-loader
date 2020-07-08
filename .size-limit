@@ -6,17 +6,17 @@
 	},
 	{
 		"path": "package/runtime.js",
-		"limit": "2.2 KB",
+		"limit": "2.4 KB",
 		"webpack": false
 	},
 	{
 		"path": "package/runtime.es.js",
-		"limit": "2.2 KB",
+		"limit": "2.3 KB",
 		"webpack": false
 	},
 	{
 		"path": "package/runtime.babel.js",
-		"limit": "1.9 KB",
+		"limit": "2 KB",
 		"webpack": false
 	}
 ]
