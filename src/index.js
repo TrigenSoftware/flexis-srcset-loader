@@ -100,14 +100,12 @@ export default async function loader(imageBuffer) {
 			}
 		}
 
-		if (moduleExportsFromRule) {
-			Object.assign(
-				moduleExports,
-				inputOptions.exports,
-				moduleExportsFromRule,
-				requestOptions.export
-			);
-		}
+		Object.assign(
+			moduleExports,
+			inputOptions.exports,
+			moduleExportsFromRule,
+			requestOptions.exports
+		);
 
 		callback(null, createModuleString(
 			moduleExports,
