@@ -167,6 +167,14 @@ module.exports = {
 | scalingUp | boolean | Generate images with higher resolution than they's sources are. | `true` |
 | postfix | [Postfix] | Postfix string or function to generate postfix for image. | see [defaults.ts] |
 
+### Exports options
+
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| width | number | Width to match image. | |
+| format | 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Format to match image. | |
+| commonjs | boolean | Use CommonJS exports.<br>Notice: Vue doesn't support ES6 exports with loaders, so you should set this prop to `true`. | `false` |
+
 ### Rule options
 
 Extends [common options](#common-options).
@@ -176,6 +184,8 @@ Extends [common options](#common-options).
 | match | [Matcher] | There is support of 3 types of matchers:<br>1. Glob pattern of file path;<br>2. Media query to match image by size;<br>3. `(path: string, size: ISize, source: Vinyl) => boolean` function. | all images |
 | format | [SupportedExtension]\|[SupportedExtension]\[\] | Output image(s) formats to convert. | no convert |
 | width | number\|number[] | Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier. | `[1]` |
+| exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
+| only | boolean | Stop trying to match other rules, if this rule is matched. | `false` |
 
 ### Loader options
 
@@ -191,10 +201,7 @@ Extends [common options](#common-options).
 | regExp | RegExp | See [file-loader docs](https://github.com/webpack-contrib/file-loader#regexp) | |
 | resourceId | [Postfix] | Function to generate id for image. | ```(width, _, format) => `${format}${width}` ``` |
 | rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
-| exports | object | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
-| exports.width | number | Width to match image. | |
-| exports.format | 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Format to match image. | |
-| exports.commonjs | boolean | Use CommonJS exports.<br>Notice: Vue doesn't support ES6 exports with loaders, so you should set this prop to `true`. | `false` |
+| exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 
 [defaults.ts]: https://github.com/TrigenSoftware/flexis-srcset/tree/master/src/defaults.ts
 [IProcessingConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.iprocessingconfig.html

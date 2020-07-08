@@ -56,47 +56,54 @@ export default async function loader(imageBuffer) {
 		commonjs: false,
 		...options.exports
 	};
+	let moduleExportsFromRule = null;
 
 	try {
 
-		await Promise.all(
-			rules.map(async (rule) => {
+		for (const rule of rules) {
 
-				const matches = await matchImage(imageSource, rule.match);
+			const matches = await matchImage(imageSource, rule.match);
 
-				if (matches) {
+			if (matches) {
 
-					const images = generator.generate(imageSource, rule);
+				const images = generator.generate(imageSource, rule);
 
-					for await (const image of images) {
+				for await (const image of images) {
 
-						const format = image.extname.replace('.', '');
-						const id = getResourceId(options, image, format);
-						const url = getUrl(options, this, context, image);
-						const outputPath = getOutputPath(options, this, context, url);
-						const publicPath = getPublicPath(options, this, context, url, outputPath);
+					const format = image.extname.replace('.', '');
+					const id = getResourceId(options, image, format);
+					const url = getUrl(options, this, context, image);
+					const outputPath = getOutputPath(options, this, context, url);
+					const publicPath = getPublicPath(options, this, context, url, outputPath);
 
-						srcSet.push({
-							id,
-							format,
-							type:             mimeTypes[format],
-							width:            image.metadata.width,
-							height:           image.metadata.height,
-							originMultiplier: image.metadata.originMultiplier,
-							url:              publicPath
-						});
+					srcSet.push({
+						id,
+						format,
+						type:             mimeTypes[format],
+						width:            image.metadata.width,
+						height:           image.metadata.height,
+						originMultiplier: image.metadata.originMultiplier,
+						url:              publicPath
+					});
 
-						if (emitFile !== false) {
-							this.emitFile(outputPath, image.contents);
-						}
+					if (emitFile !== false) {
+						this.emitFile(outputPath, image.contents);
 					}
-
-					return true;
 				}
 
-				return false;
-			})
-		);
+				if (typeof rule.exports === 'object') {
+					moduleExportsFromRule = rule.exports;
+				}
+
+				if (rule.only) {
+					break;
+				}
+			}
+		}
+
+		if (moduleExportsFromRule) {
+			Object.assign(moduleExports, moduleExportsFromRule);
+		}
 
 		callback(null, createModuleString(
 			moduleExports,
