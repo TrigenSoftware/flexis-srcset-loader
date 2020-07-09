@@ -988,14 +988,6 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime-corejs3@^7.10.3":
-  version "7.10.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.10.3.tgz#931ed6941d3954924a7aa967ee440e60c507b91a"
-  integrity sha512-HA7RPj5xvJxQl429r5Cxr2trJwOfPjKiqhCXcdQPSqO2G0RHPZpXu4fkYmBaTKCp2c/jRaMK9GB/lN+7zvvFPw==
-  dependencies:
-    core-js-pure "^3.0.0"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime-corejs3@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.10.4.tgz#f29fc1990307c4c57b10dbd6ce667b27159d9e0d"
@@ -1065,14 +1057,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@flexis/srcset@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@flexis/srcset/-/srcset-3.0.1.tgz#b3a02169bcce530069ea224bbd54d05f465fd5b8"
-  integrity sha512-JWbPxdIiw6ouDCbWl+EEDlU3RO+Ri9zJWmEd/yCrjdxZsAmeDaWuLwpl5h6SLACMA6M1d4azNeQI3u25yP3AyA==
+"@flexis/srcset@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@flexis/srcset/-/srcset-3.1.0.tgz#9098a2494d7085adf1cfcfe886c429b5ac65db53"
+  integrity sha512-WmswZTjq93ZWK+PBHVT2hxkFiCfIkyoXWKi07nalYdSzCr6o/3+ivW/idsqI0Ijt+by8TPyxqpdwq5eHgSHebg==
   dependencies:
-    "@babel/runtime-corejs3" "^7.10.3"
+    "@babel/runtime-corejs3" "^7.10.4"
     "@types/minimatch" "^3.0.3"
-    "@types/node" "^14.0.13"
+    "@types/node" "^14.0.20"
     "@types/sharp" "^0.25.0"
     "@types/through2-concurrent" "^2.0.0"
     "@types/vinyl" "^2.0.3"
@@ -1084,9 +1076,9 @@
     imagemin "^7.0.0"
     imagemin-giflossy "^5.1.10"
     imagemin-mozjpeg "^9.0.0"
+    imagemin-pngquant "^9.0.0"
     imagemin-svgo "^8.0.0"
     imagemin-webp "^6.0.0"
-    imagemin-zopfli "^7.0.0"
     minimatch "^3.0.4"
     omit-empty "^1.0.0"
     rcfile "^1.0.3"
@@ -1618,10 +1610,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.5.tgz#3d03acd3b3414cf67faf999aed11682ed121f22b"
   integrity sha512-90hiq6/VqtQgX8Sp0EzeIsv3r+ellbGj4URKj5j30tLlZvRUpnAe9YbYnjl3pJM93GyXU0tghHhvXHq+5rnCKA==
 
-"@types/node@^14.0.13":
-  version "14.0.13"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.13.tgz#ee1128e881b874c371374c1f72201893616417c9"
-  integrity sha512-rouEWBImiRaSJsVA+ITTFM6ZxibuAlTuNOCyxVbwreu6k6+ujs7DfnU9o+PShFhET78pMBl3eH+AGSI5eOTkPA==
+"@types/node@^14.0.20":
+  version "14.0.20"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.20.tgz#0da05cddbc761e1fa98af88a17244c8c1ff37231"
+  integrity sha512-MRn/NP3dee8yL5QhbSA6riuwkS+UOcsPUMOIOG3KMUQpuor/2TopdRBu8QaaB4fGU+gz/bzyDWt0FtUbeJ8H1A==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -6106,6 +6098,17 @@ imagemin-mozjpeg@^9.0.0:
     is-jpg "^2.0.0"
     mozjpeg "^7.0.0"
 
+imagemin-pngquant@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/imagemin-pngquant/-/imagemin-pngquant-9.0.0.tgz#f22ba4276cde1799fb15dd475e33984f8607e871"
+  integrity sha512-9cqnTEaJwAHWUi+8EMTB3NUouWToCWxtL+QnoYr8bfVwuKilHvRVWKsa9lt+0c3aWaGxCAkHs++j8qINvSqomA==
+  dependencies:
+    execa "^4.0.0"
+    is-png "^2.0.0"
+    is-stream "^2.0.0"
+    ow "^0.17.0"
+    pngquant-bin "^6.0.0"
+
 imagemin-svgo@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/imagemin-svgo/-/imagemin-svgo-8.0.0.tgz#34658069f9e4a537e455467b433830fffaeb3c6e"
@@ -6122,15 +6125,6 @@ imagemin-webp@^6.0.0:
     cwebp-bin "^5.0.0"
     exec-buffer "^3.0.0"
     is-cwebp-readable "^3.0.0"
-
-imagemin-zopfli@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/imagemin-zopfli/-/imagemin-zopfli-7.0.0.tgz#a44daa3bb80e2620cd1dc883d823b20b4d3788d6"
-  integrity sha512-nmffj58rVb0O3AlCZLBBVKGyZ5MYPZZfKxUhvA7bwPGougHl/F7EUKSse9jkgXjdvtJYG2ojJeh5N67mYgBM9g==
-  dependencies:
-    exec-buffer "^3.0.0"
-    is-png "^2.0.0"
-    zopflipng-bin "^6.0.0"
 
 imagemin@^7.0.0:
   version "7.0.1"
@@ -8718,6 +8712,13 @@ os-tmpdir@^1.0.0, os-tmpdir@~1.0.2:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
 
+ow@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/ow/-/ow-0.17.0.tgz#4f938999fed6264c9048cd6254356e0f1e7f688c"
+  integrity sha512-i3keDzDQP5lWIe4oODyDFey1qVrq2hXKTuTH2VpqwpYtzPiKZt2ziRI4NBQmgW40AnV5Euz17OyWweCb+bNEQA==
+  dependencies:
+    type-fest "^0.11.0"
+
 p-cancelable@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/p-cancelable/-/p-cancelable-0.3.0.tgz#b9e123800bcebb7ac13a479be195b507b98d30fa"
@@ -9127,6 +9128,16 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
+
+pngquant-bin@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/pngquant-bin/-/pngquant-bin-6.0.0.tgz#aff0d7e61095feb96ced379ad8c7294ad3dd1712"
+  integrity sha512-oXWAS9MQ9iiDAJRdAZ9KO1mC5UwhzKkJsmetiu0iqIjJuW7JsuLhmc4JdRm7uJkIWRzIAou/Vq2VcjfJwz30Ow==
+  dependencies:
+    bin-build "^3.0.0"
+    bin-wrapper "^4.0.1"
+    execa "^4.0.0"
+    logalot "^2.0.0"
 
 pnp-webpack-plugin@^1.6.4:
   version "1.6.4"
@@ -12305,12 +12316,3 @@ zip-stream@^3.0.1:
     archiver-utils "^2.1.0"
     compress-commons "^3.0.0"
     readable-stream "^3.6.0"
-
-zopflipng-bin@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/zopflipng-bin/-/zopflipng-bin-6.0.0.tgz#e638baf74c799bc6cebad3c81e197991b3343a5b"
-  integrity sha512-UVaWMTb8LM1bRa2JWrSIOu7gJ01mOnz8scBELv6+idbSAL5hiQ69NdkNnvWWdjfX6Wv8dX4uV0zo9ZK6FcoZ8w==
-  dependencies:
-    bin-build "^3.0.0"
-    bin-wrapper "^4.0.1"
-    logalot "^2.1.0"
