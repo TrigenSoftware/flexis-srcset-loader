@@ -1,6 +1,6 @@
 {
   "name": "@flexis/srcset-loader",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Highly customizable loader for generating responsive images.",
   "author": "dangreen",
   "license": "MIT",
@@ -38,13 +38,13 @@
     "webpack": "^4.0.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.10.3",
-    "@flexis/srcset": "^3.0.0",
+    "@babel/runtime-corejs3": "^7.10.4",
+    "@flexis/srcset": "^3.0.1",
     "loader-utils": "^2.0.0",
     "vinyl": "^2.2.0"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.5.1",
+    "@size-limit/preset-small-lib": "^4.5.3",
     "@trigen/scripts": "6.0.0",
     "@trigen/scripts-plugin-babel": "6.1.1",
     "@trigen/scripts-plugin-eslint": "6.0.0",
@@ -53,7 +53,7 @@
     "@trigen/scripts-plugin-size-limit": "6.0.0",
     "@trigen/scripts-preset-lib": "6.0.0",
     "css-loader": "^3.6.0",
-    "eslint-plugin-jest": "^23.17.1",
+    "eslint-plugin-jest": "^23.18.0",
     "memory-fs": "^0.5.0",
     "rollup-plugin-eslint": "^7.0.0",
     "style-loader": "^1.0.0",

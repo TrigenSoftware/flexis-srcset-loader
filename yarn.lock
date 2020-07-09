@@ -996,6 +996,14 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime-corejs3@^7.10.4":
+  version "7.10.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.10.4.tgz#f29fc1990307c4c57b10dbd6ce667b27159d9e0d"
+  integrity sha512-BFlgP2SoLO9HJX9WBwN67gHWMBhDX/eDz64Jajd6mR/UAUzqrNMm99d4qHnVaKscAElZoFiPv+JpR/Siud5lXw==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime-corejs3@^7.8.3", "@babel/runtime-corejs3@^7.9.6":
   version "7.9.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.9.6.tgz#67aded13fffbbc2cb93247388cf84d77a4be9a71"
@@ -1057,10 +1065,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@flexis/srcset@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@flexis/srcset/-/srcset-3.0.0.tgz#ff108421e7ab0713b822b2f7c0121ee10bdc335f"
-  integrity sha512-j4x74JAjn0C8YHFshZYVM5fRumB7ZDfya3goVAKyAQvlXOCBUxSg1huy6bRq2Ps+wHZsiFoXTWZs7ofRtj1Ktw==
+"@flexis/srcset@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@flexis/srcset/-/srcset-3.0.1.tgz#b3a02169bcce530069ea224bbd54d05f465fd5b8"
+  integrity sha512-JWbPxdIiw6ouDCbWl+EEDlU3RO+Ri9zJWmEd/yCrjdxZsAmeDaWuLwpl5h6SLACMA6M1d4azNeQI3u25yP3AyA==
   dependencies:
     "@babel/runtime-corejs3" "^7.10.3"
     "@types/minimatch" "^3.0.3"
@@ -1372,25 +1380,25 @@
   dependencies:
     type-detect "4.0.8"
 
-"@size-limit/file@4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.5.1.tgz#8a35c970ef786361ca85446b80e61d7ce81566c9"
-  integrity sha512-/NqXm0hypfPmLO4EhfQXMoIJ+gq+zePTrlWZAJ0usCuhYY89iZMvPR4FokGgAO8+JizNMoK4mjLgIRzuOcS2wg==
+"@size-limit/file@4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.5.3.tgz#f73afcdca4186255bb512630286de77589b7c756"
+  integrity sha512-QOvyhO4MyzYRjZLu0XYXdnun8aMOfea8uC6u46FsvvnWEnSL1LebeB1UKtk2zWGC9MYrv6c9IZvV11tbopeSjQ==
   dependencies:
     semver "7.3.2"
 
-"@size-limit/preset-small-lib@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-small-lib/-/preset-small-lib-4.5.1.tgz#d160291bd6df18216844e1de0cfcaa42b2092148"
-  integrity sha512-cw+dUsPncw6IcfBGqOOH9phev0zuryYkzQDomTzuTc1mDqB3s3S7+9lA1yBr49ByNnoQVhCrt0SJ+yM5AyosaA==
+"@size-limit/preset-small-lib@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-small-lib/-/preset-small-lib-4.5.3.tgz#de6f0e67b713ba2806770c2fc4cb0baa92e4df67"
+  integrity sha512-J5o2q75xQtzXddXLaacI5jIZaXfk7W8U5dSFAKuYMXYD4Qo116Jpkzs+/lQN+OSSJDMydSWUBnX0DWib4HsjSg==
   dependencies:
-    "@size-limit/file" "4.5.1"
-    "@size-limit/webpack" "4.5.1"
+    "@size-limit/file" "4.5.3"
+    "@size-limit/webpack" "4.5.3"
 
-"@size-limit/webpack@4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-4.5.1.tgz#f0f41f176df7261c5c5c8db7ed08372d101adc8e"
-  integrity sha512-goB1gcd5qHq6vMRqWVeGzYeyN5aapl2GmbE/zh0iLZIeRHKpy1HqC6MLuXdxZRsNDYakFMIO2xFcLxK4C1Kyug==
+"@size-limit/webpack@4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-4.5.3.tgz#ff0a9efd7799dc4ecbb3df525c824e82895258dd"
+  integrity sha512-Uw2ZgEM81RaHE9UjDGrjHyLLA1ngpWTNWU1wJmXpGHXq4F8I1wV5rLdAzWZO8F137LhK66hpYoaAk0y2w/wy2w==
   dependencies:
     css-loader "^3.6.0"
     escape-string-regexp "^4.0.0"
@@ -4523,10 +4531,10 @@ eslint-plugin-import@^2.20.0:
     read-pkg-up "^2.0.0"
     resolve "^1.12.0"
 
-eslint-plugin-jest@^23.17.1:
-  version "23.17.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.17.1.tgz#c0f39ba78e0f33b7ee1ce4ec92b773e39026ea3f"
-  integrity sha512-/o36fw67qNbJGWbSBIBMfseMsNP/d88WUHAGHCi1xFwsNB3XXZGdvxbOw49j3iQz6MCW/yw8OeOsuQhi6mM5ZA==
+eslint-plugin-jest@^23.18.0:
+  version "23.18.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.18.0.tgz#4813eacb181820ed13c5505f400956d176b25af8"
+  integrity sha512-wLPM/Rm1SGhxrFQ2TKM/BYsYPhn7ch6ZEK92S2o/vGkAAnDXM0I4nTIo745RIX+VlCRMFgBuJEax6XfTHMdeKg==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
