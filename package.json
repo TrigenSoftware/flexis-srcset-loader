@@ -1,6 +1,6 @@
 {
   "name": "@flexis/srcset-loader",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Highly customizable loader for generating responsive images.",
   "author": "dangreen",
   "license": "MIT",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.10.4",
-    "@flexis/srcset": "^3.0.1",
+    "@flexis/srcset": "^3.1.0",
     "loader-utils": "^2.0.0",
     "vinyl": "^2.2.0"
   },
