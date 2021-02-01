@@ -5,6 +5,28 @@ import compile, {
 
 jest.setTimeout(50000);
 
+function findModuleSourceByName(stats, name) {
+	if (!stats.modules) {
+		return null;
+	}
+
+	for (const module of stats.modules) {
+		if (module.name === name) {
+			return module.source;
+		}
+	}
+
+	for (const module of stats.modules) {
+		const foundModuleSource = findModuleSourceByName(module, name);
+
+		if (foundModuleSource) {
+			return foundModuleSource;
+		}
+	}
+
+	return null;
+}
+
 describe('srcset-loader', () => {
 	it('should emit files', async () => {
 		const stats = await compile('image.js', {
@@ -15,12 +37,8 @@ describe('srcset-loader', () => {
 			}],
 			scalingUp: false
 		});
-		const {
-			source
-		} = stats.modules[7].modules[2];
-		const {
-			source: commonjsSource
-		} = stats.modules[0];
+		const source = findModuleSourceByName(stats, './Felix.jpg');
+		const commonjsSource = findModuleSourceByName(stats, './Felix.jpg?commonjs');
 		const artifacts = fs.readdirSync(pathToArtifacts);
 
 		expect(source.replace(
