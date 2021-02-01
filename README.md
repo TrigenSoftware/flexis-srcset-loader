@@ -19,8 +19,8 @@
 [deps]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/flexis-srcset-loader
 
-[build]: http://img.shields.io/travis/com/TrigenSoftware/flexis-srcset-loader/master.svg
-[build-url]: https://travis-ci.com/TrigenSoftware/flexis-srcset-loader
+[build]: https://img.shields.io/github/workflow/status/TrigenSoftware/flexis-srcset-loader/CI.svg
+[build-url]: https://github.com/TrigenSoftware/flexis-srcset-loader/actions
 
 [dependabot]: https://api.dependabot.com/badges/status?host=github&repo=TrigenSoftware/flexis-srcset-loader
 [dependabot-url]: https://dependabot.com/
