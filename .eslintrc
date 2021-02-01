@@ -11,5 +11,6 @@
 			"babel.config.js"
 		],
 		"extends": "@trigen/eslint-config/commonjs"
-	}]
+	}],
+	"ignorePatterns": ["test/artifacts/**/*"]
 }

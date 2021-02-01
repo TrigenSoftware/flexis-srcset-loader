@@ -22,17 +22,16 @@ function defaultResourceId(width, _, format) {
 }
 
 export default async function loader(imageBuffer) {
-
 	const callback = this.async();
 	const inputOptions = getOptions(this) || {};
 	const requestOptions = parseRequestOptions(this.request);
 	const options = {
-		processing:       false,
-		optimization:     false,
+		processing: false,
+		optimization: false,
 		skipOptimization: false,
-		scalingUp:        true,
-		resourceId:       defaultResourceId,
-		rules:            [{}],
+		scalingUp: true,
+		resourceId: defaultResourceId,
+		rules: [{}],
 		...inputOptions,
 		...requestOptions
 	};
@@ -43,7 +42,7 @@ export default async function loader(imageBuffer) {
 	const context = getContext(options, this);
 	const generator = new SrcSetGenerator(options);
 	const imageSource = new Vinyl({
-		path:     this.resourcePath,
+		path: this.resourcePath,
 		contents: imageBuffer
 	});
 	const srcSet = [];
@@ -51,24 +50,20 @@ export default async function loader(imageBuffer) {
 	await attachMetadata(imageSource);
 
 	const moduleExports = {
-		format:   imageSource.extname.replace('.', ''),
-		width:    imageSource.metadata.width,
+		format: imageSource.extname.replace('.', ''),
+		width: imageSource.metadata.width,
 		commonjs: false
 	};
 	let moduleExportsFromRule = null;
 
 	try {
-
 		for (const rule of rules) {
-
 			const matches = await matchImage(imageSource, rule.match);
 
 			if (matches) {
-
 				const images = generator.generate(imageSource, rule);
 
 				for await (const image of images) {
-
 					const format = image.extname.replace('.', '');
 					const id = getResourceId({
 						...options,
@@ -81,11 +76,11 @@ export default async function loader(imageBuffer) {
 					srcSet.push({
 						id,
 						format,
-						type:             mimeTypes[format],
-						width:            image.metadata.width,
-						height:           image.metadata.height,
+						type: mimeTypes[format],
+						width: image.metadata.width,
+						height: image.metadata.height,
 						originMultiplier: image.metadata.originMultiplier,
-						url:              publicPath
+						url: publicPath
 					});
 
 					if (emitFile !== false) {
@@ -115,10 +110,8 @@ export default async function loader(imageBuffer) {
 			srcSet
 		));
 		return;
-
 	} catch (err) {
 		callback(err);
-		return;
 	}
 }
 

@@ -6,13 +6,11 @@ import compile, {
 jest.setTimeout(50000);
 
 describe('srcset-loader', () => {
-
 	it('should emit files', async () => {
-
 		const stats = await compile('image.js', {
 			rules: [{
-				match:  '(max-width: 3000px)',
-				width:  [1, 1920, 1280, 720, 560, 320],
+				match: '(max-width: 3000px)',
+				width: [1, 1920, 1280, 720, 560, 320],
 				format: ['webp', 'jpg']
 			}],
 			scalingUp: false

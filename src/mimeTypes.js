@@ -1,8 +1,8 @@
 
 export default {
-	gif:  'image/gif',
-	jpg:  'image/jpeg',
-	png:  'image/png',
+	gif: 'image/gif',
+	jpg: 'image/jpeg',
+	png: 'image/png',
 	webp: 'image/webp',
-	svg:  'image/svg+xml'
+	svg: 'image/svg+xml'
 };

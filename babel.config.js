@@ -14,8 +14,7 @@ module.exports = {
 		presets: [
 			['@trigen/babel-preset', {
 				env: 'lib',
-				targets: require('@trigen/browserslist-config/browsers'),
-				corejs: false
+				targets: require('@trigen/browserslist-config/browsers')
 			}]
 		]
 	}],

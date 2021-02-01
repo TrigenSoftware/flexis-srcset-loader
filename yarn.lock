@@ -1459,10 +1459,10 @@
   resolved "https://registry.yarnpkg.com/@trigen/browserslist-config/-/browserslist-config-7.1.0.tgz#f00dc958c3c83785b9c99e07cb687cdb6be30fb1"
   integrity sha512-Ba2w/LSUzX9mtPTCMsuAePUmmqvAF5VK78pjgT/6t0CW/E68BJ7f+W0H6xa0Rvl3q7LEDDmR5d19PUuepJDW5Q==
 
-"@trigen/eslint-config@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@trigen/eslint-config/-/eslint-config-7.1.0.tgz#8ee1ba629b4929c86b4ff406ba78da1a1047928c"
-  integrity sha512-w6l4iqBmg9ThoNcPyN90A3kHS8QQ9wsxiBakLCpasDg7rbUIwd/H9K9/4p5wiabuQTWSzeGrYtGDT2VmgFpydw==
+"@trigen/eslint-config@^7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@trigen/eslint-config/-/eslint-config-7.3.3.tgz#c754bdd51d7ec2a6b216b3b27c531f3b9e45f2e5"
+  integrity sha512-TdSLig/3WiHFN5jR3C6I7bBcdeecdGnHHnPJ6hiBvjerJzKvCDA8sWhBDQgLVQwuuUtXkZEFj3p5sN7hIIvyag==
   dependencies:
     "@babel/eslint-parser" "^7.12.1"
     "@typescript-eslint/eslint-plugin" "^4.13.0"
@@ -1488,13 +1488,13 @@
     "@trigen/scripts" "^7.3.1"
     core-js "^3.8.2"
 
-"@trigen/scripts-plugin-eslint@^7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-eslint/-/scripts-plugin-eslint-7.3.1.tgz#cdbd90c526f1a427638fbd8f2f9a05684cb3df89"
-  integrity sha512-gLvilWAYUAZrdu7GJd05SD/mmDLmy6KWNG/6B0LSik3oNTqjS3xq58J74c0nfjELPDW9ZIf3HCyF5IN0GqNyrw==
+"@trigen/scripts-plugin-eslint@^7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-eslint/-/scripts-plugin-eslint-7.3.3.tgz#c17a6130af07ab0e569013b00df9e21a6000469d"
+  integrity sha512-sCf49DcOwQbWng+jpU/EuAcsH8PEiBaQuAvRVt2J6Vlyc/sCupsAlsRohZUzycdBw442cPoL5nJJRQkP4+qlng==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@trigen/eslint-config" "^7.1.0"
+    "@trigen/eslint-config" "^7.3.3"
     "@trigen/scripts" "^7.3.1"
     core-js "^3.8.2"
     eslint "^7.0.0"
@@ -1537,15 +1537,15 @@
     core-js "^3.8.2"
     size-limit "^4.1.1"
 
-"@trigen/scripts-preset-lib@^7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-7.3.1.tgz#b4c5ce0eb89cc396fc2438817bee26f2b2149594"
-  integrity sha512-u5pbmE15VOU/ZUS1TM2XME6uDwRjEZvrtsvvtY+jcKr3XadE/hO/c+1nGVeA2k37Wy22dJVDjrAu+WPogO/6kg==
+"@trigen/scripts-preset-lib@^7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-7.3.3.tgz#d8d6bbb49fd3fd9e26be06786cef496d26d1c3d6"
+  integrity sha512-MBRKQUtixt8QUgHybALbljulnegM2CKTmIGKYdYtyTyS554O9O9kUugEj5iw7fGdYAASR+RUQQ/A/aCPbtm1qw==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@trigen/browserslist-config" "^7.1.0"
     "@trigen/scripts" "^7.3.1"
-    "@trigen/scripts-plugin-eslint" "^7.3.1"
+    "@trigen/scripts-plugin-eslint" "^7.3.3"
     clean-publish "^1.1.0"
     core-js "^3.8.2"
     coveralls "^3.0.0"

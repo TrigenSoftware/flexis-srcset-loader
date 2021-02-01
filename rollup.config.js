@@ -14,43 +14,43 @@ function getPlugins(transpile = true) {
 		}),
 		commonjs(),
 		transpile && babel({
-			babelHelpers:       'runtime',
+			babelHelpers: 'runtime',
 			skipPreflightCheck: true
 		})
 	].filter(Boolean);
 }
 
 export default [{
-	input:    'src/index.js',
-	plugins:  getPlugins(),
+	input: 'src/index.js',
+	plugins: getPlugins(),
 	external: external(pkg, true),
-	output:   {
-		file:      'lib/index.js',
-		format:    'cjs',
-		exports:   'named',
+	output: {
+		file: 'lib/index.js',
+		format: 'cjs',
+		exports: 'named',
 		sourcemap: 'inline'
 	}
 }, {
-	input:    'src/runtime.js',
-	plugins:  getPlugins(),
+	input: 'src/runtime.js',
+	plugins: getPlugins(),
 	external: external(pkg, true),
-	output:   [{
-		file:      'lib/runtime.es.js',
-		format:    'es',
+	output: [{
+		file: 'lib/runtime.es.js',
+		format: 'es',
 		sourcemap: 'inline'
 	}, {
-		file:      'lib/runtime.js',
-		format:    'cjs',
-		exports:   'named',
+		file: 'lib/runtime.js',
+		format: 'cjs',
+		exports: 'named',
 		sourcemap: 'inline'
 	}]
 }, {
-	input:    'src/runtime.js',
-	plugins:  getPlugins(false),
+	input: 'src/runtime.js',
+	plugins: getPlugins(false),
 	external: external(pkg, true),
-	output:   {
-		file:      'lib/runtime.babel.js',
-		format:    'es',
+	output: {
+		file: 'lib/runtime.babel.js',
+		format: 'es',
 		sourcemap: 'inline'
 	}
 }];

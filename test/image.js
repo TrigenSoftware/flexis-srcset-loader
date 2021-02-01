@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
 	groupBy,
 	filterBy,
@@ -15,7 +16,6 @@ import * as w64 from './Felix.jpg?{ "width": 64, "format": "webp" }';
 import './image.css';
 
 function img(src, srcSet) {
-
 	const srcSetString = !srcSet ? '' : toString(
 		filterBy(srcSet, 'format', 'jpg')
 	);
@@ -25,13 +25,10 @@ function img(src, srcSet) {
 }
 
 function picture(src, srcSet) {
-
 	const entries = groupBy(srcSet, 'type');
 
 	return `<picture>
-	${entries.map(([type, srcset]) =>
-		`<source type='${type}' srcset='${toString(srcset)}'>`
-	).join('\n')}
+	${entries.map(([type, srcset]) => `<source type='${type}' srcset='${toString(srcset)}'>`).join('\n')}
 	${img(src, entries)}
 </picture>`;
 }
