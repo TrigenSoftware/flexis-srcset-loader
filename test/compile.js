@@ -45,7 +45,9 @@ export default function compile(fixtureEntry, options = {}, writeToFs = false) {
 				return;
 			}
 
-			resolve(stats.toJson());
+			resolve(stats.toJson({
+				source: true
+			}));
 		});
 	});
 }
