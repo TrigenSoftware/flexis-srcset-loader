@@ -79,7 +79,7 @@ CSS:
 | Option | Type | Description |
 |--------|------|-------------|
 | id | string | Id, computed with `resourceId` option. |
-| format | 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Image file format. |
+| format | 'avif' \| 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Image file format. |
 | type | string | Mime type of image. |
 | width | number | Image width. |
 | height | number | Image height. |
@@ -173,7 +173,7 @@ module.exports = {
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
 | width | number | Width to match image. | |
-| format | 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Format to match image. | |
+| format | 'avif' \| 'webp' \| 'jpg' \| 'png' \| 'gif' \| 'svg' | Format to match image. | |
 | commonjs | boolean | Use CommonJS exports.<br>Notice: Vue doesn't support ES6 exports with loaders, so you should set this prop to `true`. | `false` |
 
 ### Rule options
