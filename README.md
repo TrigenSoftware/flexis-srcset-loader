@@ -29,7 +29,7 @@ Highly customizable loader for generating responsive images.
 
 - [Responsive images](https://developer.mozilla.org/ru/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) 🌠
 - Optimize images with [imagemin](https://www.npmjs.com/package/imagemin) 🗜
-- Convert images to [modern formats such as WebP](https://developer.mozilla.org/ru/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#Use_modern_image_formats_boldly) 📸
+- Convert images to [modern formats](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#use_modern_image_formats_boldly) such as [WebP](https://developers.google.com/speed/webp) and [AVIF](https://jakearchibald.com/2020/avif-has-landed/) 📸
 
 ## Install
 
@@ -183,8 +183,8 @@ Extends [common options](#common-options).
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
 | match | [Matcher] | There is support of 3 types of matchers:<br>1. Glob pattern of file path;<br>2. Media query to match image by size;<br>3. `(path: string, size: ISize, source: Vinyl) => boolean` function. | all images |
-| format | [SupportedExtension]\|[SupportedExtension]\[\] | Output image(s) formats to convert. | no convert |
-| width | number\|number[] | Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier. | `[1]` |
+| format | [SupportedExtension] \| [SupportedExtension]\[\] | Output image(s) formats to convert. | no convert |
+| width | number \| number[] | Output image(s) widths to resize, value less than or equal to 1 will be detected as multiplier. | `[1]` |
 | exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 | only | boolean | Stop trying to match other rules, if this rule is matched. | `false` |
 
@@ -194,9 +194,9 @@ Extends [common options](#common-options).
 
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
-| name | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#name). Also `[postfix]` placeholder is available.  |  |
-| outputPath | string\|Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#outputpath) | |
-| publicPath | string\|Function |See [file-loader docs](https://github.com/webpack-contrib/file-loader#publicpath) | |
+| name | string \| Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#name). Also `[postfix]` placeholder is available.  |  |
+| outputPath | string \| Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#outputpath) | |
+| publicPath | string \| Function |See [file-loader docs](https://github.com/webpack-contrib/file-loader#publicpath) | |
 | context | string | See [file-loader docs](https://github.com/webpack-contrib/file-loader#context) | |
 | emitFile | boolean | See [file-loader docs](https://github.com/webpack-contrib/file-loader#emitfile) | |
 | regExp | RegExp | See [file-loader docs](https://github.com/webpack-contrib/file-loader#regexp) | |
@@ -204,11 +204,11 @@ Extends [common options](#common-options).
 | exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 
 [defaults.ts]: https://github.com/TrigenSoftware/flexis-srcset/tree/master/src/defaults.ts
-[IProcessingConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.iprocessingconfig.html
-[IOptimizationConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/_types_.ioptimizationconfig.html
-[Postfix]: https://trigensoftware.github.io/flexis-srcset/modules/_types_.html#postfix
-[Matcher]: https://trigensoftware.github.io/flexis-srcset/modules/_helpers_.html#matcher
-[SupportedExtension]: https://trigensoftware.github.io/flexis-srcset/modules/_extensions_.html#supportedextension
+[IProcessingConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/types.iprocessingconfig.html
+[IOptimizationConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/types.ioptimizationconfig.html
+[Postfix]: https://trigensoftware.github.io/flexis-srcset/modules/types.html#postfix
+[Matcher]: https://trigensoftware.github.io/flexis-srcset/modules/helpers.html#matcher
+[SupportedExtension]: https://trigensoftware.github.io/flexis-srcset/modules/extensions.html#supportedextension
 
 ## Using with TypeScript
 

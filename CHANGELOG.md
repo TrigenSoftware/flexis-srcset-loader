@@ -24,6 +24,14 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [4.0.0] - 2021-02-01
+### Breaking
+- Requires `Node 12+`
+
+### Added
+- Webpack v5 support;
+- AVIF support.
+
 ## [3.0.0] - 2020-06-23
 ### Changed
 - New exports signature;

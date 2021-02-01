@@ -11,7 +11,7 @@ export type Src = {
 	/**
 	 * Image file format.
 	 **/
-	format: 'webp' | 'jpg' | 'png' | 'gif' | 'svg';
+	format: 'avif' | 'webp' | 'jpg' | 'png' | 'gif' | 'svg';
 	/**
 	 * Mime type of an image.
 	 * Example: 'image/svg+xml', 'image/jpeg'...
