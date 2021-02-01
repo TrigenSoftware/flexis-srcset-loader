@@ -1,5 +1,8 @@
 {
-	"extends": "trigen/base",
+	"extends": [
+		"@trigen/eslint-config",
+		"@trigen/eslint-config/jest"
+	],
 	"env": {
 		"node": true
 	},
@@ -7,6 +10,7 @@
 		"files": [
 			"babel.config.js"
 		],
-		"extends": "trigen/commonjs"
-	}]
+		"extends": "@trigen/eslint-config/commonjs"
+	}],
+	"ignorePatterns": ["test/artifacts/**/*"]
 }

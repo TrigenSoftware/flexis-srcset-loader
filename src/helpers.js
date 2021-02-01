@@ -25,7 +25,6 @@ const emptyString = JSON.stringify('');
  * @returns {string} Resource id.
  */
 export function getResourceId(options, image, format) {
-
 	const {
 		resourceId
 	} = options;
@@ -73,7 +72,6 @@ export function getUrl({
 	name,
 	regExp
 }, ctx, context, image) {
-
 	const {
 		extname,
 		postfix
@@ -108,11 +106,9 @@ export function getUrl({
 export function getOutputPath({
 	outputPath
 }, ctx, context, url) {
-
 	let resultOutputPath = url;
 
 	if (outputPath) {
-
 		if (typeof outputPath === 'function') {
 			resultOutputPath = outputPath(url, ctx.resourcePath, context);
 		} else {
@@ -136,11 +132,9 @@ export function getOutputPath({
 export function getPublicPath({
 	publicPath
 }, ctx, context, url, outputPath) {
-
 	let resultPublicPath = `__webpack_public_path__ + ${JSON.stringify(outputPath)}`;
 
 	if (publicPath) {
-
 		if (typeof publicPath === 'function') {
 			resultPublicPath = publicPath(url, ctx.resourcePath, context);
 		} else {
@@ -163,6 +157,7 @@ export function getPublicPath({
  * @param {string} [defaultExport.format] - Default export format.
  * @param {number} [defaultExport.width] - Default export width.
  * @param {boolean} [defaultExport.commonjs] - Export with commonjs.
+ * @param {string} [defaultExport.id] - Default export id.
  * @param {object[]} srcSet - Images.
  * @param {string} srcSet.id - Image id.
  * @param {string} srcSet.format - Image format.
@@ -179,7 +174,6 @@ export function createModuleString({
 	width: defaultWidth,
 	commonjs
 }, srcSet) {
-
 	let tmpSrcString = '';
 	let tmpUrlString = '';
 	let tmpIsDefaultSrcSet = false;
@@ -199,7 +193,6 @@ export function createModuleString({
 		originMultiplier,
 		url
 	}, i) => {
-
 		if (
 			id === defaultId
 			|| (
@@ -209,7 +202,6 @@ export function createModuleString({
 			)
 			|| width === defaultWidth
 		) {
-
 			defaultExport = url;
 			defaultSrcExportIndex = i;
 
@@ -247,7 +239,6 @@ export function createModuleString({
 		height,
 		url
 	}, i) => {
-
 		tmpIsDefaultSrcSet = i === defaultSrcExportIndex;
 		tmpUrlString = tmpIsDefaultSrcSet ? 'url' : url;
 		tmpSrcString = `{
@@ -288,7 +279,6 @@ export var srcMap = {
  * @returns {object} Parsed options.
  */
 export function parseRequestOptions(request) {
-
 	if (typeof request !== 'string' || !request) {
 		return {};
 	}
@@ -301,7 +291,6 @@ export function parseRequestOptions(request) {
 
 	const optionsPart = filePart.split('?').pop();
 	const options = optionsPart.split('&').reduce((options, pair) => {
-
 		if (pair[0] === '{') {
 			options.rules = [
 				JSON.parse(pair)
@@ -315,7 +304,6 @@ export function parseRequestOptions(request) {
 		] = pair.split('=');
 
 		switch (key) {
-
 			case 'id':
 				options.exports = {
 					...options.exports,

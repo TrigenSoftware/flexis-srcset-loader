@@ -1,9 +1,9 @@
 module.exports = {
 	exclude: 'node_modules/**',
 	presets: [
-		['babel-preset-trigen', {
-			env:      'lib',
-			targets:  require('browserslist-config-trigen/node'),
+		['@trigen/babel-preset', {
+			env: 'lib',
+			targets: require('@trigen/browserslist-config/node'),
 			commonjs: true
 		}]
 	],
@@ -12,17 +12,16 @@ module.exports = {
 			/runtime\.js$/
 		],
 		presets: [
-			['babel-preset-trigen', {
-				env:     'lib',
-				targets: require('browserslist-config-trigen/browsers'),
-				corejs:  false
+			['@trigen/babel-preset', {
+				env: 'lib',
+				targets: require('@trigen/browserslist-config/browsers')
 			}]
 		]
 	}],
 	env: {
 		test: {
 			presets: [
-				['babel-preset-trigen', {
+				['@trigen/babel-preset', {
 					env: 'jest'
 				}]
 			]

@@ -9,19 +9,16 @@
  * @returns {[string, SrcSet][]} Group entries.
  */
 export function groupBy(srcSet, field) {
-
 	const map = {};
 	let tmpSrcSetGroup = null;
 	let tmpValue = null;
 
 	return srcSet.reduce((entries, src) => {
-
 		tmpValue = src[field];
 
 		if (tmpValue in map) {
 			map[tmpValue].push(src);
 		} else {
-
 			tmpSrcSetGroup = [src];
 
 			entries.push([tmpValue, tmpSrcSetGroup]);

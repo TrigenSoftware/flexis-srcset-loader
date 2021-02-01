@@ -6,27 +6,26 @@ export const fs = new MemoryFs();
 export const pathToArtifacts = path.resolve(__dirname, 'artifacts');
 
 export default function compile(fixtureEntry, options = {}, writeToFs = false) {
-
 	const webpackCompiler = webpack({
 		optimization: {
 			minimize: false
 		},
 		context: __dirname,
-		entry:   `./${fixtureEntry}`,
-		output:  {
-			path:     pathToArtifacts,
+		entry: `./${fixtureEntry}`,
+		output: {
+			path: pathToArtifacts,
 			filename: 'bundle.js'
 		},
-		module:  {
+		module: {
 			rules: [{
 				test: /\.jpe?g$/,
-				use:  {
+				use: {
 					loader: path.resolve(__dirname, '../src/index.js'),
 					options
 				}
 			}, {
 				test: /\.css$/,
-				use:  ['style-loader', 'css-loader']
+				use: ['style-loader', 'css-loader']
 			}]
 		}
 	});
@@ -36,16 +35,13 @@ export default function compile(fixtureEntry, options = {}, writeToFs = false) {
 	}
 
 	return new Promise((resolve, reject) => {
-
 		webpackCompiler.run((err, stats) => {
-
 			const hasErrors = stats && stats.hasErrors();
 
 			if (err || hasErrors) {
 				reject(hasErrors
 					? new Error(stats.toJson().errors[0])
-					: err
-				);
+					: err);
 				return;
 			}
 
