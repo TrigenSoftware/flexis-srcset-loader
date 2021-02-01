@@ -4,6 +4,11 @@
 	"@trigen/scripts-plugin-babel",
 	"@trigen/scripts-plugin-rollup",
 	["@trigen/scripts-preset-lib", {
+		"lint": [
+			"rollup.config.js",
+			"src/**/*.js",
+			"test/**/*.js"
+		],
 		"testSkipBuild": true,
 		"publish": "./package"
 	}],
