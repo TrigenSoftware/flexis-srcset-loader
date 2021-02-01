@@ -157,7 +157,7 @@ export function getPublicPath({
  * @param {string} [defaultExport.format] - Default export format.
  * @param {number} [defaultExport.width] - Default export width.
  * @param {boolean} [defaultExport.commonjs] - Export with commonjs.
- * @param defaultExport.id
+ * @param {string} [defaultExport.id] - Default export id.
  * @param {object[]} srcSet - Images.
  * @param {string} srcSet.id - Image id.
  * @param {string} srcSet.format - Image format.
