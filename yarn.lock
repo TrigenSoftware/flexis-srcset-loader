@@ -1061,10 +1061,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@flexis/srcset@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@flexis/srcset/-/srcset-4.0.0.tgz#bb96a355304734a10d36007d83cfdccfcd100127"
-  integrity sha512-up+ddt8Vg7BeoA1Bu86U4peVr7g1wZUEJTo2yQ+c+kaKclm29kGqUOWPKE0Sm7UHVqQUpvDYvrZ1ZRB6VH3haw==
+"@flexis/srcset@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@flexis/srcset/-/srcset-4.1.0.tgz#80751efeaae25ba9c4ac04c7af25bb042024b82f"
+  integrity sha512-rrsIJ8VG87W/2utwLJdIbtg98ASGy0I73yxC+yKJ/jq7mivZPKeb0netgwN6PdmO7AKVhCV2bLM55WY7hYBBOQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@types/css-mediaquery" "^0.1.0"
@@ -1088,6 +1088,7 @@
     imagemin-webp "^6.0.0"
     minimatch "^3.0.4"
     omit-empty "^1.0.0"
+    p-limit "^3.1.0"
     rcfile "^1.0.3"
     regenerator-runtime "^0.13.7"
     sharp "^0.27.1"
