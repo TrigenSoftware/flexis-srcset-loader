@@ -24,6 +24,10 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [4.1.0] - 2021-02-13
+### Added
+- `processOnce` option.
+
 ## [4.0.0] - 2021-02-01
 ### Breaking
 - Requires `Node 12+`
