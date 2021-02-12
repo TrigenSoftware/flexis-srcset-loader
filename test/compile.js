@@ -1,12 +1,16 @@
 import path from 'path';
 import webpack from 'webpack';
-import MemoryFs from 'memory-fs';
+import {
+	fs
+} from 'memfs';
 
-export const fs = new MemoryFs();
+export {
+	fs
+};
 export const pathToArtifacts = path.resolve(__dirname, 'artifacts');
 
-export default function compile(fixtureEntry, options = {}, writeToFs = false) {
-	const webpackCompiler = webpack({
+function createConfig(fixtureEntry, outputFilename = 'bundle.js', options = {}) {
+	return {
 		optimization: {
 			minimize: false
 		},
@@ -14,7 +18,7 @@ export default function compile(fixtureEntry, options = {}, writeToFs = false) {
 		entry: `./${fixtureEntry}`,
 		output: {
 			path: pathToArtifacts,
-			filename: 'bundle.js'
+			filename: outputFilename
 		},
 		module: {
 			rules: [{
@@ -28,7 +32,43 @@ export default function compile(fixtureEntry, options = {}, writeToFs = false) {
 				use: ['style-loader', 'css-loader']
 			}]
 		}
+	};
+}
+
+export function compile(fixtureEntry, options = {}, writeToFs = false) {
+	const webpackCompiler = webpack(createConfig(fixtureEntry, 'bundle.js', options));
+
+	if (!writeToFs) {
+		webpackCompiler.outputFileSystem = fs;
+	}
+
+	return new Promise((resolve, reject) => {
+		webpackCompiler.run((err, stats) => {
+			const hasErrors = stats && stats.hasErrors();
+
+			if (err || hasErrors) {
+				reject(hasErrors
+					? new Error(stats.toJson().errors[0])
+					: err);
+				return;
+			}
+
+			resolve(stats.toJson({
+				source: true
+			}));
+		});
 	});
+}
+
+export function multiCompile(
+	fixtureEntry,
+	options = {},
+	writeToFs = false
+) {
+	const webpackCompiler = webpack([
+		createConfig(fixtureEntry, 'emit-bundle.js', options),
+		createConfig(fixtureEntry, 'noemit-bundle.js', options)
+	]);
 
 	if (!writeToFs) {
 		webpackCompiler.outputFileSystem = fs;

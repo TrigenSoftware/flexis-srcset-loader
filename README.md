@@ -198,8 +198,9 @@ Extends [common options](#common-options).
 | outputPath | string \| Function | See [file-loader docs](https://github.com/webpack-contrib/file-loader#outputpath) | |
 | publicPath | string \| Function |See [file-loader docs](https://github.com/webpack-contrib/file-loader#publicpath) | |
 | context | string | See [file-loader docs](https://github.com/webpack-contrib/file-loader#context) | |
-| emitFile | boolean | See [file-loader docs](https://github.com/webpack-contrib/file-loader#emitfile) | |
+| emitFile | boolean | See [file-loader docs](https://github.com/webpack-contrib/file-loader#emitfile) | `true` |
 | regExp | RegExp | See [file-loader docs](https://github.com/webpack-contrib/file-loader#regexp) | |
+| processOnce | boolean | If you have [multiple configurations](https://webpack.js.org/configuration/configuration-types/#exporting-multiple-configurations) this option will useful to process assets only once across all compilations. | `false` |
 | rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
 | exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 

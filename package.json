@@ -58,7 +58,7 @@
     "@trigen/scripts-preset-lib": "^7.3.3",
     "css-loader": "^5.0.1",
     "eslint": "^7.19.0",
-    "memory-fs": "^0.5.0",
+    "memfs": "^3.2.0",
     "rollup": "^2.38.3",
     "size-limit": "^4.9.2",
     "style-loader": "^2.0.0",

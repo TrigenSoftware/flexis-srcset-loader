@@ -16,6 +16,7 @@ import {
 	parseRequestOptions
 } from './helpers';
 import mimeTypes from './mimeTypes';
+import * as runtimeModulesCache from './runtimeModulesCache';
 
 function defaultResourceId(width, _, format) {
 	return `${format}${width}`;
@@ -32,14 +33,31 @@ export default async function loader(imageBuffer) {
 		scalingUp: true,
 		resourceId: defaultResourceId,
 		rules: [{}],
+		emitFile: true,
 		...inputOptions,
 		...requestOptions
 	};
 	const {
 		emitFile,
+		processOnce,
 		rules
 	} = options;
 	const context = getContext(options, this);
+	let cacheSetter = null;
+
+	if (processOnce) {
+		const cacheKey = this.request;
+
+		runtimeModulesCache.validate(cacheKey, this, imageBuffer);
+
+		if (runtimeModulesCache.has(cacheKey)) {
+			runtimeModulesCache.bindCallback(cacheKey, callback);
+			return;
+		}
+
+		cacheSetter = runtimeModulesCache.setAsync(cacheKey);
+	}
+
 	const generator = new SrcSetGenerator(options);
 	const imageSource = new Vinyl({
 		path: this.resourcePath,
@@ -83,7 +101,7 @@ export default async function loader(imageBuffer) {
 						url: publicPath
 					});
 
-					if (emitFile !== false) {
+					if (emitFile) {
 						this.emitFile(outputPath, image.contents);
 					}
 				}
@@ -105,12 +123,16 @@ export default async function loader(imageBuffer) {
 			requestOptions.exports
 		);
 
-		callback(null, createModuleString(
+		const moduleString = createModuleString(
 			moduleExports,
 			srcSet
-		));
+		);
+
+		cacheSetter?.resolve(moduleString);
+		callback(null, moduleString);
 		return;
 	} catch (err) {
+		cacheSetter?.reject(err);
 		callback(err);
 	}
 }

@@ -1,5 +1,7 @@
 /* eslint-disable no-magic-numbers */
-import compile from './compile';
+import {
+	compile
+} from './compile';
 
 compile('image.js', {
 	name: '[contenthash][postfix].[ext]',
