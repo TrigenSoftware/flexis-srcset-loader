@@ -196,21 +196,20 @@ export function createModuleString({
 		if (
 			id === defaultId
 			|| (
-				defaultWidth <= 1
-				&& typeof originMultiplier === 'number'
-				&& defaultWidth === originMultiplier
+				format === defaultFormat
+				&& (
+					(
+						defaultWidth <= 1
+						&& typeof originMultiplier === 'number'
+						&& defaultWidth === originMultiplier
+					)
+					|| width === defaultWidth
+				)
 			)
-			|| width === defaultWidth
 		) {
 			defaultExport = url;
 			defaultSrcExportIndex = i;
-
-			if (id === defaultId || format === defaultFormat) {
-				return true;
-			}
 		}
-
-		return false;
 	});
 
 	/**

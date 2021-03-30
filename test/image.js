@@ -13,6 +13,7 @@ import defaultImage from './Felix.jpg?commonjs';
 import * as x2 from './Felix.jpg?width=1';
 import * as x1 from './Felix.jpg?width=.5';
 import * as w64 from './Felix.jpg?{ "width": 64, "format": "webp" }';
+import * as webp from './Felix.jpg?format=webp';
 import './image.css';
 
 function img(src, srcSet) {
@@ -83,5 +84,6 @@ console.log(imgUrl, defaultImage, src, srcSet, srcMap);
 console.log('x1', x1);
 console.log('x2', x2);
 console.log('w64', w64);
+console.log('webp', webp);
 console.log('groupBy', groupBy(srcSet, 'type'));
 console.log('filterBy', filterBy(srcSet, 'format', 'jpg'));
