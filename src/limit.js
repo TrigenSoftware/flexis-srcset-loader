@@ -24,16 +24,22 @@ function createLimit({
 /**
  * Get limit instance for options.
  * @param {object} options
+ * @param {Function} options.limit
+ * @param {number} options.concurrency
  * @returns Limit instance.
  */
 export function get(options) {
-	if (limitMap.has(options)) {
-		return limitMap.get(options);
+	const {
+		limit: id
+	} = options;
+
+	if (limitMap.has(id)) {
+		return limitMap.get(id);
 	}
 
 	const limit = createLimit(options);
 
-	limitMap.set(options, limit);
+	limitMap.set(id, limit);
 
 	return limit;
 }
