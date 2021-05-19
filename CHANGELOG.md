@@ -24,6 +24,11 @@ DO NOT TOUCH. SAVE IT ON TOP.
 
 -->
 
+## [4.2.0] - 2021-05-20
+### Added
+- `limit` option;
+- Better concurrency.
+
 ## [4.1.0] - 2021-02-13
 ### Added
 - `processOnce` option.
