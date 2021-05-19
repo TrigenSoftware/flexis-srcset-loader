@@ -1,6 +1,6 @@
 {
   "name": "@flexis/srcset-loader",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "Highly customizable loader for generating responsive images.",
   "author": "dangreen",
   "license": "MIT",

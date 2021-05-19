@@ -30,7 +30,7 @@ function createLimit({
  */
 export function get(options) {
 	const {
-		limit: id
+		concurrency: id
 	} = options;
 
 	if (limitMap.has(id)) {
