@@ -16,6 +16,7 @@ import {
 	parseRequestOptions
 } from './helpers';
 import mimeTypes from './mimeTypes';
+import * as limit from './limit';
 import * as runtimeModulesCache from './runtimeModulesCache';
 
 function defaultResourceId(width, _, format) {
@@ -34,6 +35,7 @@ export default async function loader(imageBuffer) {
 		resourceId: defaultResourceId,
 		rules: [{}],
 		emitFile: true,
+		limit: limit.get(inputOptions),
 		...inputOptions,
 		...requestOptions
 	};
