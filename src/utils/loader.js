@@ -5,22 +5,19 @@ import {
 } from 'loader-utils';
 
 /**
+ * @typedef {import('./module').ImageFile} ImageFile
+ */
+
+/**
  * Filename postfix placeholder.
  */
 const postfixPlaceholder = '[postfix]';
-/**
- * Empty JSON string.
- */
-const emptyString = JSON.stringify('');
 
 /**
  * Generate resource id.
  * @param {object} options - Loader options,
  * @param {(width: number, mul: number, format: string) => string} options.resourceId - Id format function.
- * @param {object} image - Image file.
- * @param {object} image.metadata - Image metadata.
- * @param {number} image.metadata.width - Image width.
- * @param {number} image.metadata.originMultiplier - Origin image multiplier.
+ * @param {ImageFile} image - Image file.
  * @param {string} format - Image file format.
  * @returns {string} Resource id.
  */
@@ -62,10 +59,7 @@ export function getContext(options, ctx) {
  * @param {RegExp} [options.regExp] - Capture groups.
  * @param {object} ctx - Loader this context.
  * @param {string} context - File directory path.
- * @param {object} image - Image file.
- * @param {string} image.extname - Image extension.
- * @param {string} image.postfix - Image postfix.
- * @param {Buffer} image.contents - Image buffer.
+ * @param {ImageFile} image - Image file.
  * @returns {string} Url.
  */
 export function getUrl({
@@ -149,127 +143,6 @@ export function getPublicPath({
 	}
 
 	return resultPublicPath;
-}
-
-/**
- * Get public path.
- * @param {object} defaultExport - Default export options.
- * @param {string} [defaultExport.format] - Default export format.
- * @param {number} [defaultExport.width] - Default export width.
- * @param {boolean} [defaultExport.commonjs] - Export with commonjs.
- * @param {string} [defaultExport.id] - Default export id.
- * @param {object[]} srcSet - Images.
- * @param {string} srcSet.id - Image id.
- * @param {string} srcSet.format - Image format.
- * @param {string} srcSet.type - Image type.
- * @param {number} srcSet.width - Image width.
- * @param {number} srcSet.height - Image height.
- * @param {number} srcSet.originMultiplier - Image origin multiplier.
- * @param {string} srcSet.url - Image url.
- * @returns {string} Module string.
- */
-export function createModuleString({
-	id: defaultId,
-	format: defaultFormat,
-	width: defaultWidth,
-	commonjs
-}, srcSet) {
-	let tmpSrcString = '';
-	let tmpUrlString = '';
-	let tmpIsDefaultSrcSet = false;
-	let defaultExport = emptyString;
-	let defaultSrcExportIndex = -1;
-	let srcString = null;
-	const srcSetStrings = [];
-	const srcMapStrings = [];
-
-	/**
-	 * Find default export.
-	 */
-	srcSet.forEach(({
-		id,
-		format,
-		width,
-		originMultiplier,
-		url
-	}, i) => {
-		if (
-			id === defaultId
-			|| (
-				format === defaultFormat
-				&& (
-					(
-						defaultWidth <= 1
-						&& typeof originMultiplier === 'number'
-						&& defaultWidth === originMultiplier
-					)
-					|| width === defaultWidth
-				)
-			)
-		) {
-			defaultExport = url;
-			defaultSrcExportIndex = i;
-		}
-	});
-
-	/**
-	 * If no default export found, use first.
-	 */
-	if (defaultExport === emptyString && srcSet.length) {
-		defaultExport = srcSet[0].url;
-		defaultSrcExportIndex = 0;
-	}
-
-	/**
-	 * CommonJS export.
-	 */
-	if (commonjs) {
-		return `module.exports = ${defaultExport};`;
-	}
-
-	/**
-	 * Build ES module exports.
-	 */
-	srcSet.forEach(({
-		id,
-		format,
-		type,
-		width,
-		height,
-		url
-	}, i) => {
-		tmpIsDefaultSrcSet = i === defaultSrcExportIndex;
-		tmpUrlString = tmpIsDefaultSrcSet ? 'url' : url;
-		tmpSrcString = `{
-	id: ${JSON.stringify(id)},
-	format: ${JSON.stringify(format)},
-	type: ${JSON.stringify(type)},
-	width: ${width},
-	height: ${height},
-	url: ${tmpUrlString}
-}`;
-
-		if (tmpIsDefaultSrcSet) {
-			srcString = tmpSrcString;
-		}
-
-		srcMapStrings.push(`${JSON.stringify(id)}: ${tmpUrlString}`);
-		srcSetStrings.push(tmpIsDefaultSrcSet ? 'src' : tmpSrcString);
-	});
-
-	return `
-var url = ${defaultExport};
-
-export default url;
-
-export var src = ${srcString};
-
-export var srcSet = [${srcSetStrings.join(', ')}];
-
-export var srcMap = {
-	${srcMapStrings.join(',\n\t')}
-};
-`;
 }
 
 /**

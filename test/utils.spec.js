@@ -1,9 +1,9 @@
 import {
 	parseRequestOptions
-} from '../src/helpers';
+} from '../src/utils';
 
 describe('srcset-loader', () => {
-	describe('helpers', () => {
+	describe('utils', () => {
 		describe('parseRequestOptions', () => {
 			it('should parse exports options', () => {
 				expect(
