@@ -1,5 +1,4 @@
-
-export default {
+export const mimeTypes = {
 	gif: 'image/gif',
 	jpg: 'image/jpeg',
 	png: 'image/png',
