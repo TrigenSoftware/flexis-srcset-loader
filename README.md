@@ -206,7 +206,6 @@ Extends [common options](#common-options).
 | rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
 | exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 
-[@flexis/srcset]: https://github.com/TrigenSoftware/flexis-srcset
 [SrcSetGenerator]: https://github.com/TrigenSoftware/flexis-srcset/blob/master/src/index.ts#L41
 [defaults.ts]: https://github.com/TrigenSoftware/flexis-srcset/tree/master/src/defaults.ts
 [IProcessingConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/types.iprocessingconfig.html
