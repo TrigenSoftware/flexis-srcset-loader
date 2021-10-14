@@ -25,7 +25,11 @@ function defaultResourceId(width, _, format) {
 
 export async function loader(imageBuffer) {
 	const callback = this.async();
-	const inputOptions = getOptions(this) || {};
+	const {
+		generator: Generator = SrcSetGenerator,
+		generatorFactory,
+		...inputOptions
+	} = getOptions(this) || {};
 	const requestOptions = parseRequestOptions(this.request);
 	const options = {
 		processing: false,
@@ -60,7 +64,9 @@ export async function loader(imageBuffer) {
 		cacheSetter = runtimeModulesCache.setAsync(cacheKey);
 	}
 
-	const generator = new SrcSetGenerator(options);
+	const generator = typeof generatorFactory === 'function'
+		? generatorFactory(options)
+		: new Generator(options);
 	const imageSource = new Vinyl({
 		path: this.resourcePath,
 		contents: imageBuffer
