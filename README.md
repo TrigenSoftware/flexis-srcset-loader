@@ -167,6 +167,8 @@ module.exports = {
 | scalingUp | boolean | Generate images with higher resolution than they's sources are. | `true` |
 | postfix | [Postfix] | Postfix string or function to generate postfix for image. | see [defaults.ts] |
 | resourceId | [Postfix] | Function to generate id for image. | ```(width, _, format) => `${format}${width}` ``` |
+| generator | [SrcSetGenerator] | Will create set of sources form original image. | [SrcSetGenerator] |
+| generatorFactory | ```(options) => SrcSetGenerator``` | Create instance of generator that will be used instead of generator from previous option. And here | `undefined` |
 
 ### Exports options
 
@@ -204,6 +206,8 @@ Extends [common options](#common-options).
 | rules | [IRule](#rule-options)\[\] | Rules. | `[]` |
 | exports | [IExports](#exports-options) | Default exported image description.<br>Also you can pass it through query parameters.<br>Example: `background-image: url(./image.jpg?width=320&format=webp);` | `{}` |
 
+[@flexis/srcset]: https://github.com/TrigenSoftware/flexis-srcset
+[SrcSetGenerator]: https://github.com/TrigenSoftware/flexis-srcset/blob/master/src/index.ts#L41
 [defaults.ts]: https://github.com/TrigenSoftware/flexis-srcset/tree/master/src/defaults.ts
 [IProcessingConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/types.iprocessingconfig.html
 [IOptimizationConfig]: https://trigensoftware.github.io/flexis-srcset/interfaces/types.ioptimizationconfig.html
