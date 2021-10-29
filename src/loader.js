@@ -9,9 +9,7 @@ import {
 import {
 	getContext,
 	getResourceId,
-	getUrl,
-	getOutputPath,
-	getPublicPath,
+	getPaths,
 	createModuleString,
 	parseRequestOptions,
 	createSrcObject
@@ -69,11 +67,18 @@ export async function loader(imageBuffer) {
 		: new Generator(options);
 	const imageSource = new Vinyl({
 		path: this.resourcePath,
-		contents: imageBuffer
+		contents: imageBuffer,
+		sourceUrl: ''
 	});
 	const srcSet = [];
 
 	await attachMetadata(imageSource);
+
+	const {
+		publicPath
+	} = getPaths(options, this, context, imageSource);
+
+	imageSource.sourceUrl = publicPath;
 
 	const moduleExports = {
 		format: imageSource.extname.replace('.', ''),
@@ -95,9 +100,16 @@ export async function loader(imageBuffer) {
 						...options,
 						...rule
 					}, image, format);
-					const url = getUrl(options, this, context, image);
-					const outputPath = getOutputPath(options, this, context, url);
-					const publicPath = getPublicPath(options, this, context, url, outputPath);
+
+					if (image.url && !image.isNull()) {
+						srcSet.push(createSrcObject(id, format, image.url, image));
+						continue;
+					}
+
+					const {
+						outputPath,
+						publicPath
+					} = getPaths(options, this, context, image);
 
 					srcSet.push(createSrcObject(id, format, publicPath, image));
 

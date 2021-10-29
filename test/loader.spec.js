@@ -4,6 +4,7 @@ import {
 	fs,
 	pathToArtifacts
 } from './compile';
+import CustomGenerator from './CustomGenerator';
 
 jest.setTimeout(50000);
 
@@ -52,6 +53,21 @@ describe('srcset-loader', () => {
 			'$1asset$2'
 		)).toMatchSnapshot();
 		expect(artifacts.length).toBe(8);
+	});
+
+	it('should use custom generator and image url', async () => {
+		const stats = await compile('image.js', {
+			rules: [{
+				width: [320, 64],
+				format: ['webp', 'jpg']
+			}],
+			generator: CustomGenerator
+		});
+		const source = findModuleSourceByName(stats, './Felix.jpg');
+		const commonjsSource = findModuleSourceByName(stats, './Felix.jpg?commonjs');
+
+		expect(source).toMatchSnapshot();
+		expect(commonjsSource).toMatchSnapshot();
 	});
 
 	it('should use cache with runtimeModulesCache option', async () => {

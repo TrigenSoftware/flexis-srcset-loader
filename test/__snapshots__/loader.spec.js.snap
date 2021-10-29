@@ -64,3 +64,52 @@ export var srcMap = {
 `;
 
 exports[`srcset-loader should emit files 2`] = `"module.exports = __webpack_public_path__ + \\"asset.jpg\\";"`;
+
+exports[`srcset-loader should use custom generator and image url 1`] = `
+"
+var url = \\"imgproxy/64.jpg\\";
+
+export default url;
+
+export var src = {
+	id: \\"jpg640\\",
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	width: 640,
+	height: 480,
+	url: url
+};
+
+export var srcSet = [{
+	id: \\"webp640\\",
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	width: 640,
+	height: 480,
+	url: \\"imgproxy/320.webp\\"
+}, {
+	id: \\"webp640\\",
+	format: \\"webp\\",
+	type: \\"image/webp\\",
+	width: 640,
+	height: 480,
+	url: \\"imgproxy/64.webp\\"
+}, {
+	id: \\"jpg640\\",
+	format: \\"jpg\\",
+	type: \\"image/jpeg\\",
+	width: 640,
+	height: 480,
+	url: \\"imgproxy/320.jpg\\"
+}, src];
+
+export var srcMap = {
+	\\"webp640\\": \\"imgproxy/320.webp\\",
+	\\"webp640\\": \\"imgproxy/64.webp\\",
+	\\"jpg640\\": \\"imgproxy/320.jpg\\",
+	\\"jpg640\\": url
+};
+"
+`;
+
+exports[`srcset-loader should use custom generator and image url 2`] = `"module.exports = \\"imgproxy/64.jpg\\";"`;

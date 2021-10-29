@@ -146,6 +146,27 @@ export function getPublicPath({
 }
 
 /**
+ * Get public path.
+ * @param {object} options - Loader options.
+ * @param {string} [options.outputPath] - Output path option.
+ * @param {string} [options.publicPath] - Public path option.
+ * @param {object} ctx - Loader this context.
+ * @param {string} context - File directory path.
+ * @param {ImageFile} image - Image file.
+ * @returns {{ outputPath: string, publicPath: string }} Output and public paths.
+ */
+export function getPaths(options, ctx, context, image) {
+	const url = getUrl(options, ctx, context, image);
+	const outputPath = getOutputPath(options, ctx, context, url);
+	const publicPath = getPublicPath(options, ctx, context, url, outputPath);
+
+	return {
+		outputPath,
+		publicPath
+	};
+}
+
+/**
  * Parse options from request.
  * @param {string} request - Loader request.
  * @returns {object} Parsed options.
