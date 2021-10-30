@@ -146,7 +146,7 @@ export function getPublicPath({
 }
 
 /**
- * Get public path.
+ * Get output and public paths.
  * @param {object} options - Loader options.
  * @param {string} [options.outputPath] - Output path option.
  * @param {string} [options.publicPath] - Public path option.
