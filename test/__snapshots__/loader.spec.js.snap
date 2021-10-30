@@ -67,7 +67,7 @@ exports[`srcset-loader should emit files 2`] = `"module.exports = __webpack_publ
 
 exports[`srcset-loader should use custom generator and image url 1`] = `
 "
-var url = \\"imgproxy/64.jpg\\";
+var url = \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\";
 
 export default url;
 
@@ -86,30 +86,30 @@ export var srcSet = [{
 	type: \\"image/webp\\",
 	width: 640,
 	height: 480,
-	url: \\"imgproxy/320.webp\\"
+	url: \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\"
 }, {
 	id: \\"webp640\\",
 	format: \\"webp\\",
 	type: \\"image/webp\\",
 	width: 640,
 	height: 480,
-	url: \\"imgproxy/64.webp\\"
+	url: \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\"
 }, {
 	id: \\"jpg640\\",
 	format: \\"jpg\\",
 	type: \\"image/jpeg\\",
 	width: 640,
 	height: 480,
-	url: \\"imgproxy/320.jpg\\"
+	url: \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\"
 }, src];
 
 export var srcMap = {
-	\\"webp640\\": \\"imgproxy/320.webp\\",
-	\\"webp640\\": \\"imgproxy/64.webp\\",
-	\\"jpg640\\": \\"imgproxy/320.jpg\\",
+	\\"webp640\\": \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\",
+	\\"webp640\\": \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\",
+	\\"jpg640\\": \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\",
 	\\"jpg640\\": url
 };
 "
 `;
 
-exports[`srcset-loader should use custom generator and image url 2`] = `"module.exports = \\"imgproxy/64.jpg\\";"`;
+exports[`srcset-loader should use custom generator and image url 2`] = `"module.exports = \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\";"`;

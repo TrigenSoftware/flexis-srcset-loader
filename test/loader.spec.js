@@ -61,6 +61,7 @@ describe('srcset-loader', () => {
 				width: [320, 64],
 				format: ['webp', 'jpg']
 			}],
+			publicPath: 'https://my.imgproxy.com/',
 			generator: CustomGenerator
 		});
 		const source = findModuleSourceByName(stats, './Felix.jpg');

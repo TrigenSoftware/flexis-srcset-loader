@@ -4,6 +4,10 @@ import {
 } from '@flexis/srcset';
 
 export default class CustomGenerator {
+	constructor() {
+		this.mode = 'external';
+	}
+
 	async *generate(source, config) {
 		const variants = combineVariants({
 			type: [].concat(config.format),
@@ -11,11 +15,10 @@ export default class CustomGenerator {
 		});
 
 		yield *cuncurrentIterator(variants, async function *g({
-			type,
-			width
+			type
 		}) {
 			const image = {
-				url: `"imgproxy/${width}.${type}"`,
+				url: source.url,
 				extname: type,
 				metadata: source.metadata,
 				isNull: () => false

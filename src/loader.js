@@ -65,20 +65,29 @@ export async function loader(imageBuffer) {
 	const generator = typeof generatorFactory === 'function'
 		? generatorFactory(options)
 		: new Generator(options);
+	const isExternalMode = generator.mode === 'external';
 	const imageSource = new Vinyl({
 		path: this.resourcePath,
 		contents: imageBuffer,
-		sourceUrl: ''
+		url: ''
 	});
 	const srcSet = [];
 
 	await attachMetadata(imageSource);
 
-	const {
-		publicPath
-	} = getPaths(options, this, context, imageSource);
+	if (isExternalMode) {
+		const publicPath = JSON.parse(getPaths(options, this, context, imageSource).publicPath);
+		const {
+			protocol,
+			hostname
+		} = new URL(publicPath);
 
-	imageSource.sourceUrl = publicPath;
+		if (!protocol || !hostname) {
+			throw new Error('For external mode `publicPath` must be full URL with protocol and hostname');
+		}
+
+		imageSource.url = publicPath;
+	}
 
 	const moduleExports = {
 		format: imageSource.extname.replace('.', ''),
@@ -101,8 +110,8 @@ export async function loader(imageBuffer) {
 						...rule
 					}, image, format);
 
-					if (image.url && !image.isNull()) {
-						srcSet.push(createSrcObject(id, format, image.url, image));
+					if (isExternalMode && image.url && !image.isNull()) {
+						srcSet.push(createSrcObject(id, format, JSON.stringify(image.url), image));
 						continue;
 					}
 
