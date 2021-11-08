@@ -76,7 +76,9 @@ export async function loader(imageBuffer) {
 	await attachMetadata(imageSource);
 
 	if (isExternalMode) {
-		const publicPath = JSON.parse(getPaths(options, this, context, imageSource).publicPath);
+		const {
+			publicPath
+		} = getPaths(options, this, context, imageSource);
 		const {
 			protocol,
 			hostname
@@ -117,10 +119,10 @@ export async function loader(imageBuffer) {
 
 					const {
 						outputPath,
-						publicPath
+						jsPublicPath
 					} = getPaths(options, this, context, image);
 
-					srcSet.push(createSrcObject(id, format, publicPath, image));
+					srcSet.push(createSrcObject(id, format, jsPublicPath, image));
 
 					if (emitFile) {
 						this.emitFile(outputPath, image.contents);

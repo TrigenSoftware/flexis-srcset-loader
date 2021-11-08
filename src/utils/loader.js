@@ -120,29 +120,36 @@ export function getOutputPath({
  * @param {object} ctx - Loader this context.
  * @param {string} context - File directory path.
  * @param {string} url - Image url.
- * @param {string} outputPath - Output path.
  * @returns {string} Public path.
  */
 export function getPublicPath({
 	publicPath
-}, ctx, context, url, outputPath) {
-	let resultPublicPath = `__webpack_public_path__ + ${JSON.stringify(outputPath)}`;
-
-	if (publicPath) {
-		if (typeof publicPath === 'function') {
-			resultPublicPath = publicPath(url, ctx.resourcePath, context);
-		} else {
-			resultPublicPath = `${publicPath}${
-				publicPath.endsWith('/')
-					? ''
-					: '/'
-			}${url}`;
-		}
-
-		resultPublicPath = JSON.stringify(resultPublicPath);
+}, ctx, context, url) {
+	if (!publicPath) {
+		return null;
 	}
 
-	return resultPublicPath;
+	if (typeof publicPath === 'function') {
+		return publicPath(url, ctx.resourcePath, context);
+	}
+
+	return `${publicPath}${
+		publicPath.endsWith('/')
+			? ''
+			: '/'
+	}${url}`;
+}
+
+/**
+ * Get public path as js.
+ * @param {string} [publicPath] - Public path.
+ * @param {string} outputPath - Output path.
+ * @returns {string} Public path as js.
+ */
+export function getJsPublicPath(publicPath, outputPath) {
+	return publicPath
+		? JSON.stringify(publicPath)
+		: `__webpack_public_path__ + ${JSON.stringify(outputPath)}`;
 }
 
 /**
@@ -158,11 +165,13 @@ export function getPublicPath({
 export function getPaths(options, ctx, context, image) {
 	const url = getUrl(options, ctx, context, image);
 	const outputPath = getOutputPath(options, ctx, context, url);
-	const publicPath = getPublicPath(options, ctx, context, url, outputPath);
+	const publicPath = getPublicPath(options, ctx, context, url);
+	const jsPublicPath = getJsPublicPath(publicPath, outputPath);
 
 	return {
 		outputPath,
-		publicPath
+		publicPath,
+		jsPublicPath
 	};
 }
 
