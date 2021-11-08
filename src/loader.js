@@ -75,26 +75,26 @@ export async function loader(imageBuffer) {
 
 	await attachMetadata(imageSource);
 
-	if (isExternalMode) {
-		const {
-			publicPath
-		} = getPaths(options, this, context, imageSource);
+	try {
+		if (isExternalMode) {
+			const {
+				publicPath
+			} = getPaths(options, this, context, imageSource);
 
-		if (!publicPath || !/^https?:\/\//.test(publicPath)) {
-			throw new Error('For external mode `publicPath` must be full URL with protocol and hostname');
+			if (!publicPath || !/^https?:\/\//.test(publicPath)) {
+				throw new Error('For external mode `publicPath` must be full URL with protocol and hostname');
+			}
+
+			imageSource.url = publicPath;
 		}
 
-		imageSource.url = publicPath;
-	}
+		const moduleExports = {
+			format: imageSource.extname.replace('.', ''),
+			width: imageSource.metadata.width,
+			commonjs: false
+		};
+		let moduleExportsFromRule = null;
 
-	const moduleExports = {
-		format: imageSource.extname.replace('.', ''),
-		width: imageSource.metadata.width,
-		commonjs: false
-	};
-	let moduleExportsFromRule = null;
-
-	try {
 		for (const rule of rules) {
 			const matches = await matchImage(imageSource, rule.match);
 

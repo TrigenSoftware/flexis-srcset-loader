@@ -48,7 +48,7 @@ export function compile(fixtureEntry, options = {}, writeToFs = false) {
 
 			if (err || hasErrors) {
 				reject(hasErrors
-					? new Error(stats.toJson().errors[0])
+					? new Error(stats.toJson().errors[0].message)
 					: err);
 				return;
 			}

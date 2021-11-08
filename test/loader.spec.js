@@ -71,6 +71,19 @@ describe('srcset-loader', () => {
 		expect(commonjsSource).toMatchSnapshot();
 	});
 
+	it('should use custom generator without publicPath and throw an error', async () => {
+		await expect(compile('image.js', {
+			generator: CustomGenerator
+		})).rejects.toThrow('For external mode `publicPath` must be full URL with protocol and hostname');
+	});
+
+	it('should use custom generator without full url in publicPath and throw an error', async () => {
+		await expect(compile('image.js', {
+			publicPath: '/test',
+			generator: CustomGenerator
+		})).rejects.toThrow('For external mode `publicPath` must be full URL with protocol and hostname');
+	});
+
 	it('should use cache with runtimeModulesCache option', async () => {
 		// Warm up
 		await multiCompile('image.js', {
