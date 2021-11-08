@@ -79,12 +79,8 @@ export async function loader(imageBuffer) {
 		const {
 			publicPath
 		} = getPaths(options, this, context, imageSource);
-		const {
-			protocol,
-			hostname
-		} = new URL(publicPath);
 
-		if (!protocol || !hostname) {
+		if (!publicPath || !/^https?:\/\//.test(publicPath)) {
 			throw new Error('For external mode `publicPath` must be full URL with protocol and hostname');
 		}
 
