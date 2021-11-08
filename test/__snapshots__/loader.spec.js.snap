@@ -65,6 +65,24 @@ export var srcMap = {
 
 exports[`srcset-loader should emit files 2`] = `"module.exports = __webpack_public_path__ + \\"asset.jpg\\";"`;
 
+exports[`srcset-loader should use custom generator and emit file 1`] = `
+"
+var url = \\"\\";
+
+export default url;
+
+export var src = null;
+
+export var srcSet = [];
+
+export var srcMap = {
+	
+};
+"
+`;
+
+exports[`srcset-loader should use custom generator and emit file 2`] = `"module.exports = \\"\\";"`;
+
 exports[`srcset-loader should use custom generator and image url 1`] = `
 "
 var url = \\"https://my.imgproxy.com/0df8e6d6db01958bd60d7406da7ff4f7.jpg\\";

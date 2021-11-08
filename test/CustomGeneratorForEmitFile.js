@@ -3,7 +3,7 @@ import {
 	cuncurrentIterator
 } from '@flexis/srcset';
 
-export default class CustomGenerator {
+export default class CustomGeneratorForEmitFile {
 	constructor() {
 		this.mode = 'external';
 	}
@@ -21,7 +21,8 @@ export default class CustomGenerator {
 				url: source.url,
 				extname: type,
 				metadata: source.metadata,
-				isNull: () => true
+				contents: source.contents,
+				isNull: () => false
 			};
 
 			yield image;

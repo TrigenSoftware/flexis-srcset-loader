@@ -242,3 +242,33 @@ export function parseRequestOptions(request) {
 
 	return options;
 }
+
+/**
+ * Validating that URL is full and has protocol.
+ * @param {string} url - URL.
+ * @returns {boolean} Is full URL.
+ */
+export function isFullUrl(url) {
+	return url && /^https?:\/\//.test(url);
+}
+
+/**
+ * Attach external url to image file.
+ * @param {object} options - Loader options.
+ * @param {string} [options.outputPath] - Output path option.
+ * @param {string} [options.publicPath] - Public path option.
+ * @param {object} ctx - Loader this context.
+ * @param {string} context - File directory path.
+ * @param {ImageFile} image - Image file.
+ */
+export function attachExternalUrl(options, ctx, context, image) {
+	const {
+		publicPath
+	} = getPaths(options, ctx, context, image);
+
+	if (!isFullUrl(publicPath)) {
+		throw new Error('For external mode `publicPath` must be full URL with protocol and hostname');
+	}
+
+	image.url = publicPath;
+}

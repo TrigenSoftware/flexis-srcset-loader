@@ -12,7 +12,8 @@ import {
 	getPaths,
 	createModuleString,
 	parseRequestOptions,
-	createSrcObject
+	createSrcObject,
+	attachExternalUrl
 } from './utils';
 import * as limit from './limit';
 import * as runtimeModulesCache from './runtimeModulesCache';
@@ -77,15 +78,7 @@ export async function loader(imageBuffer) {
 
 	try {
 		if (isExternalMode) {
-			const {
-				publicPath
-			} = getPaths(options, this, context, imageSource);
-
-			if (!publicPath || !/^https?:\/\//.test(publicPath)) {
-				throw new Error('For external mode `publicPath` must be full URL with protocol and hostname');
-			}
-
-			imageSource.url = publicPath;
+			attachExternalUrl(options, this, context, imageSource);
 		}
 
 		const moduleExports = {
