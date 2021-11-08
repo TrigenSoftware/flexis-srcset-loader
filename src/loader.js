@@ -108,8 +108,13 @@ export async function loader(imageBuffer) {
 						...rule
 					}, image, format);
 
-					if (isExternalMode && image.url && !image.isNull()) {
-						srcSet.push(createSrcObject(id, format, JSON.stringify(image.url), image));
+					if (isExternalMode) {
+						if (image.url && image.isNull()) {
+							srcSet.push(createSrcObject(id, format, JSON.stringify(image.url), image));
+						} else if (emitFile && !image.isNull()) {
+							this.emitFile(getPaths(options, this, context, image).outputPath, image.contents);
+						}
+
 						continue;
 					}
 
