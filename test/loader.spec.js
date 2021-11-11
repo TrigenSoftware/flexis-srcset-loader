@@ -4,6 +4,8 @@ import {
 	fs,
 	pathToArtifacts
 } from './compile';
+import CustomGenerator from './CustomGenerator';
+import CustomGeneratorForEmitFile from './CustomGeneratorForEmitFile';
 
 jest.setTimeout(50000);
 
@@ -52,6 +54,51 @@ describe('srcset-loader', () => {
 			'$1asset$2'
 		)).toMatchSnapshot();
 		expect(artifacts.length).toBe(8);
+	});
+
+	it('should use custom generator and image url', async () => {
+		const stats = await compile('image.js', {
+			rules: [{
+				width: [320, 64],
+				format: ['webp', 'jpg']
+			}],
+			publicPath: 'https://my.imgproxy.com/',
+			generator: CustomGenerator
+		});
+		const source = findModuleSourceByName(stats, './Felix.jpg');
+		const commonjsSource = findModuleSourceByName(stats, './Felix.jpg?commonjs');
+
+		expect(source).toMatchSnapshot();
+		expect(commonjsSource).toMatchSnapshot();
+	});
+
+	it('should use custom generator and emit file', async () => {
+		const stats = await compile('image.js', {
+			rules: [{
+				width: [320, 64],
+				format: ['webp', 'jpg']
+			}],
+			publicPath: 'https://my.imgproxy.com/',
+			generator: CustomGeneratorForEmitFile
+		});
+		const source = findModuleSourceByName(stats, './Felix.jpg');
+		const commonjsSource = findModuleSourceByName(stats, './Felix.jpg?commonjs');
+
+		expect(source).toMatchSnapshot();
+		expect(commonjsSource).toMatchSnapshot();
+	});
+
+	it('should use custom generator without publicPath and throw an error', async () => {
+		await expect(compile('image.js', {
+			generator: CustomGenerator
+		})).rejects.toThrow('For external mode `publicPath` must be full URL with protocol and hostname');
+	});
+
+	it('should use custom generator without full url in publicPath and throw an error', async () => {
+		await expect(compile('image.js', {
+			publicPath: '/test',
+			generator: CustomGenerator
+		})).rejects.toThrow('For external mode `publicPath` must be full URL with protocol and hostname');
 	});
 
 	it('should use cache with runtimeModulesCache option', async () => {

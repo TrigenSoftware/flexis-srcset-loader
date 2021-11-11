@@ -9,12 +9,11 @@ import {
 import {
 	getContext,
 	getResourceId,
-	getUrl,
-	getOutputPath,
-	getPublicPath,
+	getPaths,
 	createModuleString,
 	parseRequestOptions,
-	createSrcObject
+	createSrcObject,
+	attachExternalUrl
 } from './utils';
 import * as limit from './limit';
 import * as runtimeModulesCache from './runtimeModulesCache';
@@ -67,22 +66,28 @@ export async function loader(imageBuffer) {
 	const generator = typeof generatorFactory === 'function'
 		? generatorFactory(options)
 		: new Generator(options);
+	const isExternalMode = generator.mode === 'external';
 	const imageSource = new Vinyl({
 		path: this.resourcePath,
-		contents: imageBuffer
+		contents: imageBuffer,
+		url: ''
 	});
 	const srcSet = [];
 
 	await attachMetadata(imageSource);
 
-	const moduleExports = {
-		format: imageSource.extname.replace('.', ''),
-		width: imageSource.metadata.width,
-		commonjs: false
-	};
-	let moduleExportsFromRule = null;
-
 	try {
+		if (isExternalMode) {
+			attachExternalUrl(options, this, context, imageSource);
+		}
+
+		const moduleExports = {
+			format: imageSource.extname.replace('.', ''),
+			width: imageSource.metadata.width,
+			commonjs: false
+		};
+		let moduleExportsFromRule = null;
+
 		for (const rule of rules) {
 			const matches = await matchImage(imageSource, rule.match);
 
@@ -95,11 +100,23 @@ export async function loader(imageBuffer) {
 						...options,
 						...rule
 					}, image, format);
-					const url = getUrl(options, this, context, image);
-					const outputPath = getOutputPath(options, this, context, url);
-					const publicPath = getPublicPath(options, this, context, url, outputPath);
 
-					srcSet.push(createSrcObject(id, format, publicPath, image));
+					if (isExternalMode) {
+						if (image.url && image.isNull()) {
+							srcSet.push(createSrcObject(id, format, JSON.stringify(image.url), image));
+						} else if (emitFile && !image.isNull()) {
+							this.emitFile(getPaths(options, this, context, image).outputPath, image.contents);
+						}
+
+						continue;
+					}
+
+					const {
+						outputPath,
+						jsPublicPath
+					} = getPaths(options, this, context, image);
+
+					srcSet.push(createSrcObject(id, format, jsPublicPath, image));
 
 					if (emitFile) {
 						this.emitFile(outputPath, image.contents);
